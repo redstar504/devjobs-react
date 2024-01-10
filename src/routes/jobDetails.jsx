@@ -1,70 +1,45 @@
 import '../styles/details.css'
+import { useLoaderData } from 'react-router-dom'
+import jobs from '../../data/jobs.json'
+import { useEffect } from 'react'
+
+export const loader = ({params}) => {
+  return jobs.find(j => j.id === Number(params.jobId))
+}
 
 const JobDetails = () => {
+  const job = useLoaderData()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
       <section id="jobDescriptionWrapper">
         <div id="companyDetailsCard">
-          <a href="#" id="companyLogo" style={{backgroundColor: 'hsla(36, 87%, 49%, 1)'}}>
-            <img src="/logos/scoot.svg" alt="Scoot" />
+          <a href="#" id="companyLogo" style={{backgroundColor: job.logoBackground}}>
+            <img src={job.logo} alt="Scoot" />
           </a>
-          <h3>Scoot<small>scoot.com</small></h3>
+          <h3>{job.company}<small>{job.company.toLowerCase().replace(' ', '')}.com</small></h3>
           <a href="#" className="button alternate">Company Site</a>
         </div>
         <div id="jobDetailsCard">
           <header>
-            <span>1w ago <i className="bullet"></i> Part Time</span>
-            <h3>Senior Software Engineer</h3>
-            <small>United Kingdom</small>
+            <span>{job.postedAt} <i className="bullet"></i> {job.contract}</span>
+            <h3>{job.position}</h3>
+            <small>{job.location}</small>
             <button className="button" id="applyNowButton">Apply Now</button>
           </header>
-          <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh
-            nec
-            urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet
-            viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo.
-            Suspendisse
-            potenti. Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu
-            augue.
-            Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum
-            hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque
-            euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus
-            sed, urna.
-          </p>
+          <p>{job.description}</p>
           <h3>Requirements</h3>
-          <p>
-            Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu
-            pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing
-            varius,
-            adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc
-            tellus
-            ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate
-            vel,
-            nisl.
-          </p>
+          <p>{job.requirements.content}</p>
           <ul>
-            <li>Morbi interdum mollis sapien. Sed</li>
-            <li>Phasellus lacinia magna a ullamcorper laoreet, lectus arcu pulvinar risus</li>
-            <li>Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam
-              pellentesque mauris ut lectus.
-            </li>
-            <li>Morbi interdum mollis sapien. Sed</li>
+            {job.requirements.items.map((r, i) => <li key={i}>{r}</li>)}
           </ul>
           <h3>What You Will Do</h3>
-          <p>
-            Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi
-            purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum
-            hendrerit
-            tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui,
-            eu
-            pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.
-          </p>
+          <p>{job.role.content}</p>
           <ol>
-            <li>Morbi interdum mollis sapien. Sed</li>
-            <li>Phasellus lacinia magna a ullamcorper laoreet, lectus arcu pulvinar risus</li>
-            <li>Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam
-              pellentesque mauris ut lectus.
-            </li>
-            <li>Morbi interdum mollis sapien. Sed</li>
+            {job.role.items.map((r, i) => <li key={i}>{r}</li>)}
           </ol>
         </div>
       </section>

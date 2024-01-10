@@ -1,4 +1,5 @@
 import jobs from '../../data/jobs.json'
+import { Link } from 'react-router-dom'
 
 const JobList = () => {
   return (
@@ -6,7 +7,7 @@ const JobList = () => {
       <ul id="jobList">
         {jobs.map(j => (
           <li key={j.id}>
-            <a href="/#/jobs/1" className="job">
+            <Link to={`jobs/${j.id}`} className="job">
               <div className="logoWrapper" style={{ backgroundColor: j.logoBackground }}>
                 <img src={j.logo} alt={j.company} />
               </div>
@@ -14,7 +15,7 @@ const JobList = () => {
               <h3>{j.position}</h3>
               <span>{j.company}</span>
               <small>{j.location}</small>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
