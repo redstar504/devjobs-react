@@ -316,6 +316,7 @@ main > article > header {
     padding: 3em 2em 2.25em;
     color: var(--dark-gray);
     text-decoration: none;
+    height: 100%;
 }
 
 .job .logoWrapper {
@@ -330,12 +331,16 @@ main > article > header {
     align-items: center;
 }
 
+.job header {
+    margin: 0 0 1.75em;
+}
+
 .job h3 {
     color: var(--very-dark-blue);
 }
 
 .job small {
-    margin: 1.75em 0 0;
+    margin: auto 0 0;
     color: var(--violet);
     font-weight: 700;
     font-size: 0.875em;

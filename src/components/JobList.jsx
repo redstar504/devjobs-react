@@ -11,9 +11,11 @@ const JobList = () => {
               <div className="logoWrapper" style={{ backgroundColor: j.logoBackground }}>
                 <img src={j.logo} alt={j.company} />
               </div>
-              <span>{j.postedAt}<i className="bullet"></i>{j.contract}</span>
-              <h3>{j.position}</h3>
-              <span>{j.company}</span>
+              <header>
+                <span>{j.postedAt}<i className="bullet"></i>{j.contract}</span>
+                <h3>{j.position}</h3>
+                <span>{j.company}</span>
+              </header>
               <small>{j.location}</small>
             </Link>
           </li>
