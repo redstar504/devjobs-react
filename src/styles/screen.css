@@ -300,16 +300,10 @@ main > article > header {
 }
 
 #jobList {
-    display: flex;
-    flex-direction: row;
-    flex-flow: row wrap;
+    display: grid;
     row-gap: 3.5625em;
-    margin: 0 0 2em;
     column-gap: .6875em;
-}
-
-#jobList li {
-    flex-grow: 1;
+    margin: 0 0 2em;
 }
 
 .job {
@@ -503,6 +497,7 @@ main > article > header {
     #jobList {
         row-gap: 4.0625em;
         margin: 0 0 3.5em;
+        grid-template-columns: 1fr 1fr;
     }
 
     #loadMoreButton {
@@ -521,5 +516,6 @@ main > article > header {
 
     #jobList {
         column-gap: 1.875em;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
