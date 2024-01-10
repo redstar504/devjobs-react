@@ -1,0 +1,524 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swalp');
+
+/* start reset */
+
+html, body, div, p, h1, h2, h3, h4, h5, h6,
+ul, ol, li, dl, dt, dd, form, fieldset, caption, legend,
+table, tr, td, th, address, blockquote, img {
+    margin: 0;
+    padding: 0;
+}
+
+img, fieldset {
+    border: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+html {
+    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+button, label, summary {
+    cursor: pointer;
+}
+
+body, button, input, table, textarea, select {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-family: inherit;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+}
+
+/* end reset */
+
+:root {
+    --violet: hsl(235, 69%, 61%);
+    --violet-fade-10: hsl(235, 69%, 61%, .1);
+    --violet-fade-35: hsl(235, 69%, 61%, .35);
+    --light-violet: hsl(235, 82%, 77%);
+    --very-dark-blue: hsl(219, 29%, 14%);
+    --midnight: hsl(220, 29%, 10%);
+    --white: hsl(0, 0%, 100%);
+    --fixed-white: hsl(0, 0%, 100%);
+    --light-gray: hsl(210, 22%, 96%);
+    --gray: hsl(212, 23%, 69%);
+    --dark-gray: hsl(214, 17%, 51%);
+    --dark-gray-faded: hsl(214, 17%, 51%, .2);
+    --dark--gray-button-hover: hsl(217, 6%, 44%);
+    --header-violet: #5964E0;
+    --max-width: 72em;
+}
+
+#darkMode:checked + main {
+    --white: hsl(219, 29%, 14%);
+    --light-gray: hsl(220, 29%, 10%);
+    --very-dark-blue: hsl(0, 0%, 100%);
+    --midnight: hsl(210, 22%, 96%);
+}
+
+#darkMode:checked + main #openMobileFiltersButton {
+    background-image: url(../assets/mobile/icon-filter-white.svg);
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font: 400 1em/1.625 Kumbh Sans, sans-serif;
+    background: var(--header-violet);
+}
+
+input:-webkit-autofill {
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0 50px white inset;
+}
+
+h2 {
+    font-size: 1.5rem;
+    line-height: 1.8125;
+}
+
+h3 {
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+h4 {
+    font-size: 0.875rem;
+    line-height: 1.125;
+}
+
+.button {
+    background-color: var(--violet);
+    color: var(--fixed-white);
+    font-weight: 700;
+    border-radius: 0.3125rem;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    display: block;
+    padding: 0 2.375rem;
+    transition: .15s background-color;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: var(--light-violet);
+}
+
+.button.alternate {
+    background-color: var(--violet-fade-10);
+    color: var(--violet);
+}
+
+.button.alternate:hover {
+    background-color: var(--violet-fade-35);
+    color: var(--violet);
+}
+
+@media (min-width: 48em) {
+    #darkMode:checked + main .button.alternate {
+        background-color: var(--dark-gray-faded);
+        color: var(--fixed-white);
+    }
+
+    #darkMode:checked + main .button.alternate:hover {
+        background-color: var(--violet-fade-35);
+        color: var(--violet);
+    }
+}
+
+.bullet {
+    margin: 0 .75em;
+    display: inline-block;
+    background: var(--dark-gray);
+    height: .25em;
+    width: .25em;
+    border-radius: 100%;
+    vertical-align: middle;
+}
+
+main {
+    background: var(--light-gray) url(../assets/mobile/bg-pattern-header.svg) top -1px left / 100vw no-repeat;
+    color: var(--very-dark-blue);
+    padding: 2em 1.5em;
+    margin: 0 auto;
+    min-height: 100%;
+}
+
+main > article {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    position: relative;
+    z-index: 3;
+}
+
+h1 {
+    font-size: 1.75em;
+    color: var(--fixed-white);
+    width: 7.1875rem;
+    height: 2rem;
+    position: relative;
+    text-indent: -99em;
+}
+
+h1 span {
+    position: absolute;
+    background: url(../assets/desktop/logo.svg) 0 0 no-repeat;
+    top: .2rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+main > article > header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 2em;
+}
+
+#darkMode {
+    display: none;
+}
+
+#darkModeWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s left;
+    gap: .75em;
+}
+
+#darkModeWrapper span {
+    width: 1.25em;
+    height: 1.25em;
+    background-image: url(../assets/desktop/icon-sun.svg);
+}
+
+#darkModeWrapper span:last-child {
+    width: .75em;
+    height: .75em;
+    background-image: url(../assets/desktop/icon-moon.svg);
+}
+
+#modeControl {
+    width: 3em;
+    height: 1.5em;
+    background: var(--fixed-white);
+    border-radius: 1em;
+    padding: .375rem 0 .375em 0;
+    position: relative;
+}
+
+#modeControl i {
+    display: block;
+    width: 0.75em;
+    height: 0.75em;
+    background: var(--violet);
+    border-radius: 50%;
+    position: absolute;
+    left: 0.375em;
+    transition: 0.075s left;
+}
+
+#darkMode:checked + main #darkModeWrapper #modeControl i {
+    left: 1.875em;
+}
+
+#searchForm {
+    background: var(--white);
+    height: 5em;
+    border-radius: .375em;
+    display: flex;
+    align-items: center;
+    margin: 0 0 3.5625em;
+    padding: 0 1em;
+    overflow: hidden;
+}
+
+#searchForm .fieldWrapper {
+    height: 100%;
+    flex-grow: 1;
+    color: var(--midnight);
+    min-width: 0; /* @see https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size  */
+}
+
+#searchForm .fieldWrapper .textField {
+    outline: none;
+    border: none;
+}
+
+#locationQueryLabel {
+    display: none;
+}
+
+#searchForm .textField {
+    height: 100%;
+    width: 100%;
+}
+
+#locationQuery, #fullTimeQuery, #fullTimeQuery + label {
+    display: none;
+}
+
+#searchForm button,
+#openMobileFiltersButton {
+    flex: 0 3em;
+    padding: 0;
+    min-width: 0;
+    text-indent: -999em;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#openMobileFiltersButton {
+    background-image: url(../assets/mobile/icon-filter.svg);
+}
+
+#searchForm #searchButton {
+    background-image: url(../assets/desktop/icon-search-white.svg);
+}
+
+#jobList {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    row-gap: 3.5625em;
+    margin: 0 0 2em;
+    column-gap: .6875em;
+}
+
+#jobList li {
+    flex-grow: 1;
+}
+
+.job {
+    display: flex;
+    flex-flow: column wrap;
+    row-gap: 0.375em;
+    position: relative;
+    background: var(--white);
+    border-radius: .375em;
+    padding: 3em 2em 2.25em;
+    color: var(--dark-gray);
+    text-decoration: none;
+}
+
+.job .logoWrapper {
+    position: absolute;
+    width: 3.125em;
+    height: 3.125em;
+    top: -1.5625em;
+    left: 2em;
+    border-radius: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.job h3 {
+    color: var(--very-dark-blue);
+}
+
+.job small {
+    margin: 1.75em 0 0;
+    color: var(--violet);
+    font-weight: 700;
+    font-size: 0.875em;
+}
+
+#loadMoreButton {
+    margin: 0 auto;
+}
+
+#mobileFiltersWrapper {
+    position: fixed;
+    width: 20.4375em;
+    height: 13.5625em;
+    top: 50%;
+    left: 50%;
+    margin-left: calc(-20.4375em / 2);
+    margin-top: calc(-13.5625em / 2);
+    background-color: var(--white);
+    border-radius: 0.375em;
+    z-index: 5;
+    display: none;
+    flex-direction: column;
+    row-gap: 1.5em;
+    padding: 1.5em;
+    overflow: hidden;
+    box-shadow: 0 25px 40px -20px rgba(0, 0, 0, 0.10);
+}
+
+#mobileFiltersWrapper .textField {
+    height: 4.5em;
+    width: calc(100% + 3em);
+    margin: -1.5em -1.5em 0;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: var(--dark-gray-faded);
+    outline: none;
+    background: url(../assets/desktop/icon-location.svg) center left 1.5em no-repeat;
+    padding: 0 0 0 3.5625em;
+}
+
+#mobileFiltersWrapper #mobileFullTimeQueryLabel {
+    font-weight: 700;
+    display: flex;
+    column-gap: 1em;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 4;
+}
+
+#areMobileFiltersOpen {
+    display: none;
+}
+
+#areMobileFiltersOpen:checked ~ #mobileFiltersWrapper {
+    display: flex;
+}
+
+#areMobileFiltersOpen:checked ~ #overlay {
+    display: block;
+}
+
+@media (min-width: 48em) {
+    body::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 10em;
+        background-image: url(../assets/tablet/bg-pattern-header.svg);
+        background-size: auto;
+        background-repeat: no-repeat;
+    }
+
+    body::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 6em;
+        width: calc(100% - 6em);
+        height: 10em;
+        background: var(--header-violet);
+    }
+
+    main {
+        background-image: none;
+        background-color: var(--light-gray);
+        padding: 2.625em 2.4375em;
+    }
+
+    main > article > header {
+        margin: 0 0 2.875em;
+    }
+
+    #locationQuery, #fullTimeQuery, #fullTimeQuery + label {
+        display: block;
+    }
+
+    #searchForm {
+        margin: 0 0 4.375em;
+    }
+
+    #searchForm .fieldWrapper {
+        border-right:1px solid var(--dark-gray-faded);
+        padding: 0 0 0 3em;
+    }
+
+    #searchForm .fieldWrapper input {
+        background: var(--white);
+    }
+
+    #searchForm #titleQueryLabel {
+        flex-grow: 3;
+        background: url(../assets/desktop/icon-search-violet.svg) center left .75rem no-repeat;
+    }
+
+    #searchForm #locationQueryLabel {
+        flex-grow: 1;
+        display: block;
+        background: url(../assets/desktop/icon-location.svg) center left 1.125em no-repeat;
+    }
+
+    #fullTimeQueryWrapper {
+        display: flex;
+        padding: 0 2em;
+        column-gap: 1em;
+    }
+
+    #fullTimeQueryWrapper label {
+        white-space: nowrap;
+        font-weight: 700;
+    }
+
+    #fullTimeQueryWrapper label b {
+        display: none;
+    }
+
+    #openMobileFiltersButton {
+        display: none;
+    }
+
+    #searchForm #searchButton {
+        background-image: none;
+        text-indent: 0;
+        min-width: auto;
+        padding: 0 .875em;
+    }
+
+    #jobList {
+        row-gap: 4.0625em;
+        margin: 0 0 3.5em;
+    }
+
+    #loadMoreButton {
+        margin: 0 auto 1.1875em;
+    }
+}
+
+@media (min-width: 69.375em) {
+    #fullTimeQueryWrapper label b {
+        display: inline;
+    }
+
+    #searchForm {
+        margin: 0 0 6.5625em;
+    }
+
+    #jobList {
+        column-gap: 1.875em;
+    }
+}

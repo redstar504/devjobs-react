@@ -1,0 +1,212 @@
+#companyDetailsCard {
+    background: var(--white);
+    text-align: center;
+    padding: 3.0625em 1.5em 2em;
+    line-height: 1;
+    border-radius: .375em;
+    position: relative;
+    margin: 3.5625em 0 1.5em;
+}
+
+#companyDetailsCard h3 {
+    line-height: 1;
+    margin: 0 0 1.6875em;
+}
+
+#companyDetailsCard h3 small {
+    display: block;
+    font-weight: normal;
+    color: var(--dark-gray);
+    margin: .8125em 0 0;
+}
+
+#companyDetailsCard #companyLogo {
+    width: 3.125em;
+    height: 3.125em;
+    top: -1.5625em;
+    left: calc(50% - 1.5625em);
+    position: absolute;
+    border-radius: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#companyDetailsCard .button {
+    display: inline-block;
+    padding: 0 1.25em;
+}
+
+#jobDetailsCard {
+    background: var(--white);
+    padding: 2.5em 1.625em .5em;
+    border-radius: .375em;
+    color: var(--dark-gray);
+    margin: 0 0 4em;
+}
+
+#jobDetailsCard header {
+    margin: 0 0 2em;
+}
+
+#jobDetailsCard header h3 {
+    margin: 0;
+}
+
+#jobDetailsCard h3 {
+    color: var(--very-dark-blue);
+    margin: 0 0 1.25rem;
+}
+
+#jobDetailsCard small {
+    color: var(--violet);
+    font-weight: 700;
+    font-size: .875em;
+}
+
+#jobDetailsCard #applyNowButton {
+    width: 100%;
+    margin: 2.5em 0 0;
+}
+
+#jobDetailsCard p,
+#jobDetailsCard ul,
+#jobDetailsCard ol {
+    margin: 0 0 2.5em;
+    list-style: none;
+}
+
+#jobDetailsCard ol {
+    counter-reset: ordered;
+    flex-direction: column;
+    column-gap: 1em;
+}
+
+#jobDetailsCard li {
+    margin: 0 0 0.5em;
+    position: relative;
+    counter-increment: section;
+    display: flex;
+    padding: 0 0 0 2em;
+}
+
+#jobDetailsCard li::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#jobDetailsCard ol li::before {
+    content: counter(ordered);
+    counter-increment: ordered;
+    color: var(--violet);
+    font-weight: 700;
+}
+
+#jobDetailsCard ul li::before {
+    content: '';
+    display: block;
+    width: .25em;
+    height: .25em;
+    border-radius: 50%;
+    background: var(--violet);
+    top: .625em;
+}
+
+#applyNowFooter {
+    background: var(--white);
+    margin: 2em -1.5em -2em;
+    text-align: center;
+    padding: 1.5em;
+}
+
+#applyNowFooter h3 {
+    display: none;
+}
+
+@media (min-width: 48em) {
+    #companyDetailsCard {
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 3em 0 0;
+        align-items: center;
+        column-gap: 2.5em;
+        height: 8.75em;
+        margin: 2.875em 0;
+    }
+
+    #companyDetailsCard #companyLogo {
+        align-self: stretch;
+        position: static;
+        height: auto;
+        border-radius: 0;
+        width: 8.75em;
+        display: flex;
+    }
+
+    #companyDetailsCard #companyLogo img {
+        width: 100%;
+        padding: 1.75em;
+    }
+
+    #companyDetailsCard h3 {
+        margin: 0;
+        text-align: left;
+        font-size: 1.5rem;
+        line-height: 1.8125;
+    }
+
+    #companyDetailsCard h3 small {
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    #companyDetailsCard .button {
+        margin: 0 0 0 auto;
+        padding: 0;
+        width: 9.5em;
+    }
+
+    #jobDetailsCard {
+        padding-left: 3em;
+        padding-right: 3em;
+    }
+
+    #jobDetailsCard header h3 {
+        font-size: 1.75rem;
+        line-height: 1.5;
+    }
+
+    #jobDetailsCard #applyNowButton {
+        float: right;
+        margin: -2.875em 0 0;
+        padding: 0;
+        width: 9.5em;
+    }
+
+    #applyNowFooter {
+        margin: 0 -2.4375em -2.625em;
+        padding: 1.5em 2.4375em;
+        text-align: left;
+    }
+
+    #applyNowFooter section {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #applyNowFooter h3 {
+        display: block;
+    }
+
+    #applyNowFooter h3 small {
+        display: block;
+        font-weight: 500;
+        color: var(--dark-gray);
+    }
+}
