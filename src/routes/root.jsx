@@ -1,9 +1,15 @@
 import { Outlet } from 'react-router-dom'
 import '../styles/screen.css'
+import { useReducer } from 'react'
+import DarkModeControl from '../components/DarkModeControl.jsx'
+import { isDarkModeOperatingSystem } from '../lib/darkMode.js'
+
 
 export default function Root() {
+  const [useDarkMode, toggleDarkMode] = useReducer(enabled => !enabled, isDarkModeOperatingSystem())
+
   return (
-    <>
+    <main id={useDarkMode ? 'darkModeEnabled' : ''}>
       <article>
         <header>
           <h1>
@@ -12,11 +18,7 @@ export default function Root() {
               <span></span>
             </a>
           </h1>
-          <label id="darkModeWrapper" htmlFor="darkMode">
-            <span></span>
-            <i id="modeControl"><i></i></i>
-            <span></span>
-          </label>
+          <DarkModeControl onToggleMode={toggleDarkMode} />
         </header>
         <Outlet />
       </article>
@@ -30,6 +32,6 @@ export default function Root() {
         <label htmlFor="areMobileFiltersOpen" id="mobileFilterButton" className="button">Search</label>
       </div>
       <label id="overlay" htmlFor="areMobileFiltersOpen"></label>
-    </>
+    </main>
   )
 }
