@@ -5,7 +5,7 @@ const JobDetails = () => {
       <section id="jobDescriptionWrapper">
         <div id="companyDetailsCard">
           <a href="#" id="companyLogo" style={{backgroundColor: 'hsla(36, 87%, 49%, 1)'}}>
-            <img src="/src/assets/logos/scoot.svg" alt="Scoot" />
+            <img src="/logos/scoot.svg" alt="Scoot" />
           </a>
           <h3>Scoot<small>scoot.com</small></h3>
           <a href="#" className="button alternate">Company Site</a>

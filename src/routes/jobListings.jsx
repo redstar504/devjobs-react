@@ -23,7 +23,7 @@ const JobListings = () => {
         <li>
           <a href="/#/jobs/1" className="job">
             <div className="logoWrapper" style={{backgroundColor: 'hsla(157, 56%, 50%, 1)'}}>
-              <img src="/src/assets/logos/crowdfund.svg" alt="Crowdfund" />
+              <img src="/logos/crowdfund.svg" alt="Crowdfund" />
             </div>
             <span>5h ago<i className="bullet"></i>Full Time</span>
             <h3>Senior Software Engineer</h3>
