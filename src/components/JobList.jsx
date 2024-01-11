@@ -1,25 +1,36 @@
-import jobs from '../../data/jobs.json'
 import { Link } from 'react-router-dom'
+import { getJobList } from '../lib/API.js'
+import { useEffect, useState } from 'react'
 
 const JobList = () => {
-  return (
+  const [jobs, setJobs] = useState([])
+
+  useEffect(() => {
+    getJobList()
+      .then(json => setJobs(json))
+  }, [])
+
+  return jobs.length > 0 && (
     <>
       <ul id="jobList">
-        {jobs.map(j => (
+        {jobs.map(j => {
+          const company = j.company_detail;
+          return (
           <li key={j.id}>
             <Link to={`jobs/${j.id}`} className="job">
-              <div className="logoWrapper" style={{ backgroundColor: j.logoBackground }}>
-                <img src={j.logo} alt={j.company} />
+              <div className="logoWrapper" style={{ backgroundColor: company.color }}>
+                <img src={company.logo} alt={company.name} />
               </div>
               <header>
-                <span>{j.postedAt}<i className="bullet"></i>{j.contract}</span>
-                <h3>{j.position}</h3>
-                <span>{j.company}</span>
+                <span>null<i className="bullet"></i>{j.contract_type}</span>
+                <h3>{j.title}</h3>
+                <span>{company.name}</span>
               </header>
               <small>{j.location}</small>
             </Link>
           </li>
-        ))}
+        )
+        })}
       </ul>
 
       <button id="loadMoreButton" className="button">Load More</button>
