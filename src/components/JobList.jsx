@@ -8,7 +8,7 @@ const JobList = () => {
 
   useEffect(() => {
     getJobList()
-      .then(json => setJobs(json))
+      .then(json => setJobs(json.results))
   }, [])
 
   return jobs.length > 0 && (
