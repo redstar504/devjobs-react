@@ -1,7 +1,7 @@
-const API_HOST = import.meta.env.VITE_API_HOST;
+const API_HOST = import.meta.env.VITE_API_HOST
 
-export async function getJobList() {
-  return fetch(`${API_HOST}/jobs/`)
+export async function getJobList(page = 1) {
+  return fetch(`${API_HOST}/jobs/?page=${page}`)
     .then(response => response.json())
 }
 

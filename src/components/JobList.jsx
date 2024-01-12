@@ -5,19 +5,33 @@ import getTimeAgo from '../lib/dateUtil.js'
 
 const JobList = () => {
   const [jobs, setJobs] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [hasMoreResults, setHasMoreResults] = useState(false)
 
   useEffect(() => {
-    getJobList()
-      .then(json => setJobs(json.results))
-  }, [])
+    getJobList(currentPage)
+      .then(json => {
+        setJobs([...jobs, ...json.results])
+        if (null !== json.next) {
+          setHasMoreResults(true)
+        } else {
+          setHasMoreResults(false)
+        }
+      })
+  }, [currentPage])
+
+  const handleLoadMore = e => {
+    e.preventDefault();
+    setCurrentPage(currentPage + 1)
+  }
 
   return jobs.length > 0 && (
     <>
       <ul id="jobList">
-        {jobs.map(j => {
+        {jobs.map((j, i) => {
           const company = j.company_detail;
           return (
-          <li key={j.id}>
+          <li key={i}>
             <Link to={`jobs/${j.id}`} className="job">
               <div className="logoWrapper" style={{ backgroundColor: company.color }}>
                 <img src={company.logo} alt={company.name} />
@@ -33,8 +47,7 @@ const JobList = () => {
         )
         })}
       </ul>
-
-      <button id="loadMoreButton" className="button">Load More</button>
+      {hasMoreResults && <button id="loadMoreButton" className="button" onClick={handleLoadMore}>Load More</button>}
     </>
   )
 }
