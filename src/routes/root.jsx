@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import '../styles/screen.css'
 import { useReducer } from 'react'
 import DarkModeControl from '../components/DarkModeControl.jsx'
@@ -13,10 +13,10 @@ export default function Root() {
       <article>
         <header>
           <h1>
-            <a href="/">
+            <Link to="/">
               devjobs
               <span></span>
-            </a>
+            </Link>
           </h1>
           <DarkModeControl onToggleMode={toggleDarkMode} />
         </header>
