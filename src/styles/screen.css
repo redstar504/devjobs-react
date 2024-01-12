@@ -362,7 +362,7 @@ main > article > header {
     background-color: var(--white);
     border-radius: 0.375em;
     z-index: 5;
-    display: none;
+    display: flex;
     flex-direction: column;
     row-gap: 1.5em;
     padding: 1.5em;
@@ -389,7 +389,7 @@ main > article > header {
 }
 
 #overlay {
-    display: none;
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -397,18 +397,6 @@ main > article > header {
     height: 100%;
     background: rgba(0, 0, 0, 0.3);
     z-index: 4;
-}
-
-#areMobileFiltersOpen {
-    display: none;
-}
-
-#areMobileFiltersOpen:checked ~ #mobileFiltersWrapper {
-    display: flex;
-}
-
-#areMobileFiltersOpen:checked ~ #overlay {
-    display: block;
 }
 
 @media (min-width: 48em) {

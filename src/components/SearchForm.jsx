@@ -1,4 +1,10 @@
-const SearchForm = () => {
+const SearchForm = ({onOpenMobileFilters = f => f}) => {
+
+  const handleOpenMobileFilters = e => {
+    e.preventDefault()
+    onOpenMobileFilters()
+  }
+
   return (
     <form id="searchForm">
       <label className="fieldWrapper" id="titleQueryLabel">
@@ -13,9 +19,9 @@ const SearchForm = () => {
           Full Time <b>Only</b>
         </label>
       </div>
-      <label htmlFor="areMobileFiltersOpen" id="openMobileFiltersButton">
+      <button id="openMobileFiltersButton" onClick={handleOpenMobileFilters}>
         Filter
-      </label>
+      </button>
       <button className="button" id="searchButton">Search</button>
     </form>
   )
