@@ -86,7 +86,7 @@ html, body {
 
 body {
     font: 400 1em/1.625 Kumbh Sans, sans-serif;
-    background: var(--header-violet);
+    background: #000;
 }
 
 input:-webkit-autofill {
