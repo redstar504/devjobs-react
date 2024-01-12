@@ -5,7 +5,7 @@ import MobileFilterDialog from '../components/MobileFilterDialog.jsx'
 import { useReducer } from 'react'
 
 const Index = () => {
-  const [areMobileFiltersOpen, toggleMobileFilters] = useReducer(v => !v, false)
+  const [areMobileFiltersOpen, toggleMobileFilters] = useReducer(v => !v, true)
 
   return (
     <>

@@ -357,7 +357,6 @@ main > article > header {
 #mobileFiltersWrapper {
     position: fixed;
     width: 20.4375em;
-    height: 13.5625em;
     top: 50%;
     left: 50%;
     margin-left: calc(-20.4375em / 2);
@@ -383,6 +382,24 @@ main > article > header {
     outline: none;
     background: url(../assets/desktop/icon-location.svg) center left 1.5em no-repeat;
     padding: 0 0 0 3.5625em;
+}
+
+#mobileFiltersWrapper #mobileLocationSuggestions {
+    display: block;
+    background: var(--light-gray);
+    margin: -1.5em -1.5em 0;
+    padding: 0.5em 1.5em;
+    border-bottom: 1px solid var(--dark-gray-faded);
+}
+
+#mobileLocationSuggestions a {
+    text-decoration: none;
+    font-weight: 700;
+    line-height: 2;
+    color: var(--midnight);
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
 }
 
 #mobileFiltersWrapper #mobileFullTimeQueryLabel {
