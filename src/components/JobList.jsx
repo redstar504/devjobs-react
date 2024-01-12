@@ -1,28 +1,13 @@
 import { Link } from 'react-router-dom'
-import { getJobList } from '../lib/API.js'
-import { useEffect, useState } from 'react'
 import getTimeAgo from '../lib/dateUtil.js'
+import { useJobList } from '../hooks/useJobList.jsx'
 
 const JobList = () => {
-  const [jobs, setJobs] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
-  const [hasMoreResults, setHasMoreResults] = useState(false)
-
-  useEffect(() => {
-    getJobList(currentPage)
-      .then(json => {
-        setJobs([...jobs, ...json.results])
-        if (null !== json.next) {
-          setHasMoreResults(true)
-        } else {
-          setHasMoreResults(false)
-        }
-      })
-  }, [currentPage])
+  const { jobs, nextPage, hasMoreResults } = useJobList()
 
   const handleLoadMore = e => {
     e.preventDefault();
-    setCurrentPage(currentPage + 1)
+    nextPage()
   }
 
   return jobs.length > 0 && (

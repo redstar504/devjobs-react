@@ -3,6 +3,7 @@ import '../styles/screen.css'
 import { useReducer } from 'react'
 import DarkModeControl from '../components/DarkModeControl.jsx'
 import { isDarkModeOperatingSystem } from '../lib/darkMode.js'
+import { JobListProvider } from '../hooks/useJobList.jsx'
 
 
 export default function Root() {
@@ -20,7 +21,9 @@ export default function Root() {
           </h1>
           <DarkModeControl onToggleMode={toggleDarkMode} />
         </header>
-        <Outlet />
+        <JobListProvider>
+          <Outlet />
+        </JobListProvider>
       </article>
       <input type="checkbox" id="areMobileFiltersOpen" />
       <div id="mobileFiltersWrapper">
