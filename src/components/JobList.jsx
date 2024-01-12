@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import getTimeAgo from '../lib/dateUtil.js'
 import { useJobList } from '../hooks/useJobList.jsx'
+import { trans } from '../lib/translate.js'
 
 const JobList = () => {
   const { jobs, nextPage, hasMoreResults } = useJobList()
@@ -22,7 +23,7 @@ const JobList = () => {
                 <img src={company.logo} alt={company.name} />
               </div>
               <header>
-                <span>{getTimeAgo(new Date(j.post_date))} ago<i className="bullet"></i>{j.contract_type}</span>
+                <span>{getTimeAgo(new Date(j.post_date))} ago<i className="bullet"></i>{trans(j.contract_type)}</span>
                 <h3>{j.title}</h3>
                 <span>{company.name}</span>
               </header>

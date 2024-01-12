@@ -9,6 +9,10 @@ test('translates part time properly', () => {
   expect(trans("PT")).toBe('Part Time')
 })
 
+test('translates freelance properly', () => {
+  expect(trans("FR")).toBe('Freelance')
+})
+
 test('translate not found is empty string', () => {
   expect(trans("FOO")).toBe('')
 })

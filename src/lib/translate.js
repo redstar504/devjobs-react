@@ -6,7 +6,11 @@ const dict = [
   {
     key: 'PT',
     english: 'Part Time',
-  }
+  },
+  {
+    key: 'FR',
+    english: 'Freelance',
+  },
 ]
 
 export function trans(key) {
