@@ -275,6 +275,7 @@ main > article > header {
     height: 100%;
     width: 100%;
     background-color: var(--white);
+    color: var(--very-dark-blue);
 }
 
 #locationQuery, #fullTimeQuery, #fullTimeQuery + label {
