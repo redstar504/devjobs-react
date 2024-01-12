@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom'
 import { useEffect } from 'react'
 import { getSingleJob } from '../lib/API.js'
 import getTimeAgo from '../lib/dateUtil.js'
+import { getHostname } from '../lib/urlUtil.js'
 
 export const loader = ({params}) => {
   return getSingleJob(params.jobId)
@@ -22,7 +23,7 @@ const JobDetails = () => {
           <a href="#" id="companyLogo" style={{backgroundColor: company.color}}>
             <img src={company.logo} alt="Scoot" />
           </a>
-          <h3>{company.name}<small>null.com</small></h3>
+          <h3>{company.name}<small>{getHostname(company.website)}</small></h3>
           <a href="#" className="button alternate">Company Site</a>
         </div>
         <div id="jobDetailsCard">
