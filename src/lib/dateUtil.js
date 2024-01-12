@@ -1,5 +1,12 @@
-export default function getTimeAgo(date, now = new Date()) {
-  const delta = (now - date) / 1000
+export default function getTimeAgo(date, options = {}) {
+  const defaults = {
+    now: new Date(),
+    display: 'short'
+  }
+
+  options = { ...defaults, ...options }
+
+  const delta = (options.now - date) / 1000
 
   const mapping = [
     {
@@ -38,7 +45,7 @@ export default function getTimeAgo(date, now = new Date()) {
     let diff = Math.floor(mapping[i].formula(delta))
 
     if (diff < mapping[i].limit) {
-      return `${diff}${mapping[i].display}`
+      return options.display === 'long' ? `${diff} ${mapping[i].name}` : `${diff}${mapping[i].display}`
     }
   }
 }

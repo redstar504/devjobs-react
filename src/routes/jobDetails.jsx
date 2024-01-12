@@ -1,14 +1,16 @@
 import '../styles/details.css'
 import { useLoaderData } from 'react-router-dom'
-import jobs from '../../data/jobs.json'
 import { useEffect } from 'react'
+import { getSingleJob } from '../lib/API.js'
+import getTimeAgo from '../lib/dateUtil.js'
 
 export const loader = ({params}) => {
-  return jobs.find(j => j.id === Number(params.jobId))
+  return getSingleJob(params.jobId)
 }
 
 const JobDetails = () => {
   const job = useLoaderData()
+  const company = job.company_detail
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -17,30 +19,22 @@ const JobDetails = () => {
   return (
       <section id="jobDescriptionWrapper">
         <div id="companyDetailsCard">
-          <a href="#" id="companyLogo" style={{backgroundColor: job.logoBackground}}>
-            <img src={job.logo} alt="Scoot" />
+          <a href="#" id="companyLogo" style={{backgroundColor: company.color}}>
+            <img src={company.logo} alt="Scoot" />
           </a>
-          <h3>{job.company}<small>{job.company.toLowerCase().replace(' ', '')}.com</small></h3>
+          <h3>{company.name}<small>null.com</small></h3>
           <a href="#" className="button alternate">Company Site</a>
         </div>
         <div id="jobDetailsCard">
           <header>
-            <span>{job.postedAt} <i className="bullet"></i> {job.contract}</span>
-            <h3>{job.position}</h3>
+            <span>{getTimeAgo(new Date(job.post_date), {display: 'long'})} ago
+              <i className="bullet"></i> {job.contract_type}
+            </span>
+            <h3>{job.title}</h3>
             <small>{job.location}</small>
             <button className="button" id="applyNowButton">Apply Now</button>
           </header>
-          <p>{job.description}</p>
-          <h3>Requirements</h3>
-          <p>{job.requirements.content}</p>
-          <ul>
-            {job.requirements.items.map((r, i) => <li key={i}>{r}</li>)}
-          </ul>
-          <h3>What You Will Do</h3>
-          <p>{job.role.content}</p>
-          <ol>
-            {job.role.items.map((r, i) => <li key={i}>{r}</li>)}
-          </ol>
+          <div dangerouslySetInnerHTML={{__html: job.description}}></div>
         </div>
       </section>
   )
