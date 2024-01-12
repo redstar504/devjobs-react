@@ -66,11 +66,14 @@ ul {
     --max-width: 72em;
 }
 
-#darkModeEnabled {
+#darkModeEnabled,
+#darkModeEnabled ~ *,
+#darkModeEnabled ~ * * {
     --white: hsl(219, 29%, 14%);
     --light-gray: hsl(220, 29%, 10%);
     --very-dark-blue: hsl(0, 0%, 100%);
     --midnight: hsl(210, 22%, 96%);
+    color: var(--very-dark-blue);
 }
 
 #darkModeEnabled #openMobileFiltersButton {
