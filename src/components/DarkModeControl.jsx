@@ -1,4 +1,4 @@
-const DarkModeControl = ({onToggleMode}) => {
+const DarkModeControl = ({ onToggleMode }) => {
   return (
     <button id="darkModeControl" onClick={onToggleMode}>
       <span></span>

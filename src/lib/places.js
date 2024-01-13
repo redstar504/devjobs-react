@@ -14,10 +14,10 @@ export function getPlaceRecommendations(query, onResults) {
       const service = new AutocompleteService()
       service.getPlacePredictions({
         input: query,
-        types: ['locality'],
+        types: ['locality']
       }, onResults)
     })
     .catch((e) => {
       console.error(e)
-    });
+    })
 }

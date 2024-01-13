@@ -9,14 +9,14 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
     lng: undefined,
     placeId: undefined,
     fullTimeOnly: false,
-    query: ""
+    query: ''
   })
   const [isSearchingCurrentLocation, setIsSearchingCurrentLocation] = useState(false)
   const [searchSuggestions, setSearchSuggestions] = useState([])
 
   const handleSubmitSearch = e => {
     e.preventDefault()
-    console.log(searchParams);
+    console.log(searchParams)
   }
 
   const handleTypingLocation = (query) => {
@@ -24,7 +24,7 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
       setSearchSuggestions([])
     }
     setIsSuggestible(true)
-    setSearchParams({...searchParams, query: query, placeId: undefined})
+    setSearchParams({ ...searchParams, query: query, placeId: undefined })
     getPlaceRecommendations(query, results => {
       const mappedCities = results.map(({ structured_formatting: { main_text: city }, place_id }) => ({
         city,
@@ -53,11 +53,11 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
 
   const handleSelectSuggestion = i => e => {
     e.preventDefault()
-    setSearchParams({...searchParams, query: searchSuggestions[i].city, placeId: searchSuggestions[i].place_id})
+    setSearchParams({ ...searchParams, query: searchSuggestions[i].city, placeId: searchSuggestions[i].place_id })
     setIsSuggestible(false)
   }
 
-  const toggleFullTimeOnly = () => setSearchParams({...searchParams, fullTimeOnly: !searchParams.fullTimeOnly})
+  const toggleFullTimeOnly = () => setSearchParams({ ...searchParams, fullTimeOnly: !searchParams.fullTimeOnly })
 
   return (
     <>

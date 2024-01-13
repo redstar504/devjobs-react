@@ -1,4 +1,4 @@
-const SearchForm = ({onOpenMobileFilters = f => f}) => {
+const SearchForm = ({ onOpenMobileFilters = f => f }) => {
 
   const handleOpenMobileFilters = e => {
     e.preventDefault()

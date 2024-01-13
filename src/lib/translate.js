@@ -1,19 +1,19 @@
 const dict = [
   {
     key: 'FT',
-    english: 'Full Time',
+    english: 'Full Time'
   },
   {
     key: 'PT',
-    english: 'Part Time',
+    english: 'Part Time'
   },
   {
     key: 'FR',
-    english: 'Freelance',
-  },
+    english: 'Freelance'
+  }
 ]
 
 export function trans(key) {
   const item = dict.find(di => di.key === key)
-  return item ? item.english : ""
+  return item ? item.english : ''
 }

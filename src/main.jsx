@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createHashRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from './error-page.jsx'
-import JobDetails, {loader as jobLoader } from './routes/jobDetails.jsx'
+import JobDetails, { loader as jobLoader } from './routes/jobDetails.jsx'
 import Index from './routes/index.jsx'
 import Root from './routes/root.jsx'
 
@@ -19,7 +19,7 @@ const router = createHashRouter([
       {
         path: 'jobs/:jobId',
         element: <JobDetails />,
-        loader: jobLoader,
+        loader: jobLoader
       }
     ]
   }

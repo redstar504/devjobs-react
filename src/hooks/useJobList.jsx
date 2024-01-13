@@ -20,7 +20,7 @@ export function JobListProvider({ children }) {
 
   useEffect(() => {
     if (!isLoading) {
-      return;
+      return
     }
 
     getJobList(currentPage)
@@ -32,7 +32,7 @@ export function JobListProvider({ children }) {
   }, [isLoading, jobs, currentPage])
 
   return (
-    <JobListContext.Provider value={{jobs, nextPage, hasMoreResults}}>
+    <JobListContext.Provider value={{ jobs, nextPage, hasMoreResults }}>
       {children}
     </JobListContext.Provider>
   )

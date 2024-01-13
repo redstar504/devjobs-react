@@ -13,7 +13,8 @@ const Index = () => {
         <SearchForm onOpenMobileFilters={toggleMobileFilters} />
         <JobList />
       </section>
-      {areMobileFiltersOpen && createPortal(<MobileFilterDialog onClose={toggleMobileFilters} />, document.getElementById('root'))}
+      {areMobileFiltersOpen && createPortal(<MobileFilterDialog
+        onClose={toggleMobileFilters} />, document.getElementById('root'))}
     </>
   )
 }

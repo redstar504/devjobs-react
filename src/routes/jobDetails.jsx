@@ -5,7 +5,7 @@ import { getSingleJob } from '../lib/API.js'
 import getTimeAgo from '../lib/dateUtil.js'
 import { getHostname } from '../lib/urlUtil.js'
 
-export const loader = ({params}) => {
+export const loader = ({ params }) => {
   return getSingleJob(params.jobId)
 }
 
@@ -18,26 +18,26 @@ const JobDetails = () => {
   }, [])
 
   return (
-      <section id="jobDescriptionWrapper">
-        <div id="companyDetailsCard">
-          <a href="#" id="companyLogo" style={{backgroundColor: company.color}}>
-            <img src={company.logo} alt="Scoot" />
-          </a>
-          <h3>{company.name}<small>{getHostname(company.website)}</small></h3>
-          <a href="#" className="button alternate">Company Site</a>
-        </div>
-        <div id="jobDetailsCard">
-          <header>
-            <span>{getTimeAgo(new Date(job.post_date), {display: 'long'})} ago
+    <section id="jobDescriptionWrapper">
+      <div id="companyDetailsCard">
+        <a href="#" id="companyLogo" style={{ backgroundColor: company.color }}>
+          <img src={company.logo} alt="Scoot" />
+        </a>
+        <h3>{company.name}<small>{getHostname(company.website)}</small></h3>
+        <a href="#" className="button alternate">Company Site</a>
+      </div>
+      <div id="jobDetailsCard">
+        <header>
+            <span>{getTimeAgo(new Date(job.post_date), { display: 'long' })} ago
               <i className="bullet"></i> {job.contract_type}
             </span>
-            <h3>{job.title}</h3>
-            <small>{job.location}</small>
-            <button className="button" id="applyNowButton">Apply Now</button>
-          </header>
-          <div dangerouslySetInnerHTML={{__html: job.description}}></div>
-        </div>
-      </section>
+          <h3>{job.title}</h3>
+          <small>{job.location}</small>
+          <button className="button" id="applyNowButton">Apply Now</button>
+        </header>
+        <div dangerouslySetInnerHTML={{ __html: job.description }}></div>
+      </div>
+    </section>
   )
 }
 
