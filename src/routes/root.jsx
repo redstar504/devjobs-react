@@ -1,6 +1,7 @@
 import { Link, Outlet } from 'react-router-dom'
 import '../styles/screen.css'
-import { useReducer } from 'react'
+import '../styles/dark.css'
+import { useEffect, useReducer } from 'react'
 import DarkModeControl from '../components/DarkModeControl.jsx'
 import { isDarkModeOperatingSystem } from '../lib/darkMode.js'
 import { JobListProvider } from '../hooks/useJobList.jsx'
@@ -9,8 +10,16 @@ import { JobListProvider } from '../hooks/useJobList.jsx'
 export default function Root() {
   const [useDarkMode, toggleDarkMode] = useReducer(enabled => !enabled, isDarkModeOperatingSystem())
 
+  useEffect(() => {
+    if (useDarkMode) {
+      document.body.id = 'darkModeEnabled'
+    } else {
+      document.body.id = ''
+    }
+  }, [useDarkMode])
+
   return (
-    <main id={useDarkMode ? 'darkModeEnabled' : ''}>
+    <main>
       <article>
         <header>
           <h1>

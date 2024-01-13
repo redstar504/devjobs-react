@@ -66,20 +66,6 @@ ul {
     --max-width: 72em;
 }
 
-#darkModeEnabled,
-#darkModeEnabled ~ *,
-#darkModeEnabled ~ * * {
-    --white: hsl(219, 29%, 14%);
-    --light-gray: hsl(220, 29%, 10%);
-    --very-dark-blue: hsl(0, 0%, 100%);
-    --midnight: hsl(210, 22%, 96%);
-    color: var(--very-dark-blue);
-}
-
-#darkModeEnabled #openMobileFiltersButton {
-    background-image: url(../assets/mobile/icon-filter-white.svg);
-}
-
 html, body {
     height: 100%;
 }
@@ -137,18 +123,6 @@ h4 {
     color: var(--violet);
 }
 
-@media (min-width: 48em) {
-    #darkModeEnabled .button.alternate {
-        background-color: var(--dark-gray-faded);
-        color: var(--fixed-white);
-    }
-
-    #darkModeEnabled .button.alternate:hover {
-        background-color: var(--violet-fade-35);
-        color: var(--violet);
-    }
-}
-
 .bullet {
     margin: 0 .75em;
     display: inline-block;
@@ -157,6 +131,10 @@ h4 {
     width: .25em;
     border-radius: 100%;
     vertical-align: middle;
+}
+
+.textField {
+    color: var(--very-dark-blue);
 }
 
 main {
@@ -197,54 +175,6 @@ main > article > header {
     justify-content: space-between;
     align-items: center;
     margin: 0 0 2em;
-}
-
-#darkMode {
-    display: none;
-}
-
-#darkModeControl {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: .2s left;
-    gap: .75em;
-}
-
-#darkModeControl span {
-    width: 1.25em;
-    height: 1.25em;
-    background-image: url(../assets/desktop/icon-sun.svg);
-}
-
-#darkModeControl span:last-child {
-    width: .75em;
-    height: .75em;
-    background-image: url(../assets/desktop/icon-moon.svg);
-}
-
-#modeControl {
-    width: 3em;
-    height: 1.5em;
-    background: var(--fixed-white);
-    border-radius: 1em;
-    padding: .375rem 0 .375em 0;
-    position: relative;
-}
-
-#modeControl i {
-    display: block;
-    width: 0.75em;
-    height: 0.75em;
-    background: var(--violet);
-    border-radius: 50%;
-    position: absolute;
-    left: 0.375em;
-    transition: 0.075s left;
-}
-
-#darkModeEnabled #darkModeControl #modeControl i {
-    left: 1.875em;
 }
 
 #searchForm {
