@@ -1,7 +1,5 @@
 import { useJobList } from '../hooks/useJobList.jsx'
 import { JobListItem } from './JobListItem.jsx'
-import { createPortal } from 'react-dom'
-import MobileFilterDialog from './MobileFilterDialog.jsx'
 
 const JobList = () => {
   const { jobs, nextPage, hasMoreResults } = useJobList()

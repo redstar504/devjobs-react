@@ -1,10 +1,9 @@
-import { useEffect, useReducer, useState } from 'react'
+import { useState } from 'react'
 import { FaLocationCrosshairs, FaLocationDot } from 'react-icons/fa6'
 import { getPlaceRecommendations } from '../lib/places.js'
 
 const MobileFilterDialog = ({ onClose = f => f }) => {
-  const [locationQuery, setLocationQuery] = useState('')
-  const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false)
+  const [isSuggestible, setIsSuggestible] = useState(false)
   const [searchParams, setSearchParams] = useState({
     lat: undefined,
     lng: undefined,
@@ -24,7 +23,7 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
     if ('' === query) {
       setSearchSuggestions([])
     }
-    setIsSuggestionsOpen(true)
+    setIsSuggestible(true)
     setSearchParams({...searchParams, query: query, placeId: undefined})
     getPlaceRecommendations(query, results => {
       const mappedCities = results.map(({ structured_formatting: { main_text: city }, place_id }) => ({
@@ -44,7 +43,7 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
         lng: f.coords.longitude
       })
       setIsSearchingCurrentLocation(false)
-      setIsSuggestionsOpen(false)
+      setIsSuggestible(false)
     }
 
     navigator.geolocation.getCurrentPosition(success, () => {
@@ -55,7 +54,7 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
   const handleSelectSuggestion = i => e => {
     e.preventDefault()
     setSearchParams({...searchParams, query: searchSuggestions[i].city, placeId: searchSuggestions[i].place_id})
-    setIsSuggestionsOpen(false)
+    setIsSuggestible(false)
   }
 
   const toggleFullTimeOnly = () => setSearchParams({...searchParams, fullTimeOnly: !searchParams.fullTimeOnly})
@@ -71,7 +70,7 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
             value={searchParams.query}
             disabled={isSearchingCurrentLocation}
           />
-          {isSuggestionsOpen && (
+          {isSuggestible && (
             <ul id="mobileLocationSuggestions">
               <li>
                 <a href="#" onClick={handleUseMyLocation}>
