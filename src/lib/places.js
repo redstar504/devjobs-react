@@ -1,4 +1,3 @@
-const KEY = import.meta.env.VITE_GMAPS_API_KEY
 import { Loader } from '@googlemaps/js-api-loader'
 
 const loader = new Loader({
