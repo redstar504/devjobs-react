@@ -354,16 +354,22 @@ main > article > header {
     margin: 0 auto;
 }
 
-#mobileFiltersWrapper {
+#mobileFiltersContainer {
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index:5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#mobileFiltersWrapper {
     width: 20.4375em;
-    top: 50%;
-    left: 50%;
-    margin-left: calc(-20.4375em / 2);
-    margin-top: calc(-13.5625em / 2);
     background-color: var(--white);
     border-radius: 0.375em;
-    z-index: 5;
     display: flex;
     flex-direction: column;
     row-gap: 1.5em;
@@ -406,17 +412,6 @@ main > article > header {
     font-weight: 700;
     display: flex;
     column-gap: 1em;
-}
-
-#overlay {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 4;
 }
 
 @media (min-width: 48em) {
