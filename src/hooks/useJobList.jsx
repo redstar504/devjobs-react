@@ -29,9 +29,7 @@ export function JobListProvider({ children }) {
       return
     }
 
-    console.log('load filtered job list', filters)
-
-    getJobList(currentPage)
+    getJobList(currentPage, filters)
       .then(json => {
         setJobs([...jobs, ...json.results])
         setIsLoading(false)
