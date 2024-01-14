@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { getPlaceRecommendations } from '../../lib/places.js'
 
 const autocompleteEnabled = import.meta.env.DEV
-console.log(import.meta.env, import.meta.env.DEV, import.meta.env.PROD)
 
 const LocationAssistant = ({
   query,
