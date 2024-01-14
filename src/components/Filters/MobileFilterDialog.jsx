@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { FaLocationCrosshairs, FaLocationDot } from 'react-icons/fa6'
-import { getPlaceRecommendations } from '../lib/places.js'
+import { FaLocationCrosshairs } from 'react-icons/fa6'
+import { useJobList } from '../../hooks/useJobList.jsx'
 
-const MobileFilterDialog = ({ onClose = f => f }) => {
-  const [isSuggestible, setIsSuggestible] = useState(false)
+const MobileFilterDialog = ({onClose = f => f}) => {
+  const { applyFilters } = useJobList();
+  const [hasSuggestions, setHasSuggestions] = useState(false)
   const [searchParams, setSearchParams] = useState({
     lat: undefined,
     lng: undefined,
@@ -12,26 +13,27 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
     query: ''
   })
   const [isSearchingCurrentLocation, setIsSearchingCurrentLocation] = useState(false)
-  const [searchSuggestions, setSearchSuggestions] = useState([])
+  // const [searchSuggestions, setSearchSuggestions] = useState([])
 
   const handleSubmitSearch = e => {
     e.preventDefault()
-    console.log(searchParams)
+    applyFilters(searchParams)
+    // onClose()
   }
 
   const handleTypingLocation = (query) => {
-    if ('' === query) {
+    /*if ('' === query) {
       setSearchSuggestions([])
-    }
-    setIsSuggestible(true)
+    }*/
+    setHasSuggestions(true)
     setSearchParams({ ...searchParams, query: query, placeId: undefined })
-    getPlaceRecommendations(query, results => {
+    /*getPlaceRecommendations(query, results => {
       const mappedCities = results.map(({ structured_formatting: { main_text: city }, place_id }) => ({
         city,
         place_id
       })).slice(0, 3)
       setSearchSuggestions(mappedCities)
-    })
+    })*/
   }
 
   const handleUseMyLocation = () => {
@@ -43,7 +45,7 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
         lng: f.coords.longitude
       })
       setIsSearchingCurrentLocation(false)
-      setIsSuggestible(false)
+      setHasSuggestions(false)
     }
 
     navigator.geolocation.getCurrentPosition(success, () => {
@@ -51,11 +53,11 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
     })
   }
 
-  const handleSelectSuggestion = i => e => {
+  /*const handleSelectSuggestion = i => e => {
     e.preventDefault()
     setSearchParams({ ...searchParams, query: searchSuggestions[i].city, placeId: searchSuggestions[i].place_id })
     setIsSuggestible(false)
-  }
+  }*/
 
   const toggleFullTimeOnly = () => setSearchParams({ ...searchParams, fullTimeOnly: !searchParams.fullTimeOnly })
 
@@ -70,20 +72,20 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
             value={searchParams.query}
             disabled={isSearchingCurrentLocation}
           />
-          {isSuggestible && (
+          {hasSuggestions && (
             <ul id="mobileLocationSuggestions">
               <li>
                 <a href="#" onClick={handleUseMyLocation}>
                   <FaLocationCrosshairs /> Use current location
                 </a>
               </li>
-              {searchSuggestions.length > 0 && searchSuggestions.map((s, i) => (
+              {/*{searchSuggestions.length > 0 && searchSuggestions.map((s, i) => (
                 <li key={i}>
                   <a href="#" onClick={handleSelectSuggestion(i)}>
                     <FaLocationDot />{s.city}
                   </a>
                 </li>
-              ))}
+              ))}*/}
             </ul>
           )}
           <label id="mobileFullTimeQueryLabel">

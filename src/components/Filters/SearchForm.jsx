@@ -1,10 +1,6 @@
-const SearchForm = ({ onOpenMobileFilters = f => f }) => {
+import MobileFiltersButton from './MobileFiltersButton.jsx'
 
-  const handleOpenMobileFilters = e => {
-    e.preventDefault()
-    onOpenMobileFilters()
-  }
-
+const SearchForm = () => {
   return (
     <form id="searchForm">
       <label className="fieldWrapper" id="titleQueryLabel">
@@ -19,9 +15,7 @@ const SearchForm = ({ onOpenMobileFilters = f => f }) => {
           Full Time <b>Only</b>
         </label>
       </div>
-      <button id="openMobileFiltersButton" onClick={handleOpenMobileFilters}>
-        Filter
-      </button>
+      <MobileFiltersButton />
       <button className="button" id="searchButton">Search</button>
     </form>
   )
