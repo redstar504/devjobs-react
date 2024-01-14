@@ -15,7 +15,7 @@ export const JobListItem = ({ job }) => {
           <h3>{job.title}</h3>
           <span>{company.name}</span>
         </header>
-        <small>{job.location}</small>
+        <small>{job.country}</small>
       </Link>
     </li>
   )
