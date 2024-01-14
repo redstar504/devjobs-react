@@ -9,7 +9,10 @@ const MobileFiltersButton = () => {
     <>
       {areMobileFiltersOpen && createPortal(<MobileFilterDialog
         onClose={toggleMobileFilters} />, document.getElementById('root'))}
-      <button id="openMobileFiltersButton" onClick={e => {e.preventDefault(); toggleMobileFilters()}}>
+      <button id="openMobileFiltersButton" onClick={e => {
+        e.preventDefault()
+        toggleMobileFilters()
+      }}>
         Filter
       </button>
     </>

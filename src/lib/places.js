@@ -10,8 +10,7 @@ export function getPlaceRecommendations(query, onResults) {
   loader
     .importLibrary('places')
     .then(({ AutocompleteService }) => {
-      const service = new AutocompleteService()
-      service.getPlacePredictions({
+      new AutocompleteService().getPlacePredictions({
         input: query,
         types: ['locality']
       }, onResults)
