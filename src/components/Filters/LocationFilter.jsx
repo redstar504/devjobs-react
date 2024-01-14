@@ -17,7 +17,7 @@ const LocationFilter = ({ query, onUpdateParams = f => f }) => {
 
   const handleQueryChange = e => {
     setIsUsingAutocomplete(false)
-    onUpdateParams({ locationQuery: e.target.value })
+    onUpdateParams({ locationQuery: e.target.value, placeId: undefined })
   }
 
   const assistantEnabled = !isUsingAutocomplete && !isUsingDeviceLocation
