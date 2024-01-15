@@ -2,7 +2,7 @@ import { FaLocationCrosshairs, FaLocationDot } from 'react-icons/fa6'
 import { useEffect, useState } from 'react'
 import { getPlaceRecommendations } from '../../lib/places.js'
 
-const autocompleteEnabled = import.meta.env.DEV
+const autocompleteEnabled = true
 
 const LocationAssistant = ({
   query,
