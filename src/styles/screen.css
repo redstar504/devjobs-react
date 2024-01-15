@@ -233,6 +233,11 @@ main > article > header {
     background-image: url(../assets/mobile/icon-filter.svg);
 }
 
+#openMobileFiltersButton.active,
+#darkModeEnabled #openMobileFiltersButton.active {
+    background-image: url(../assets/mobile/icon-filter-active.svg);
+}
+
 #searchForm #searchButton {
     background-image: url(../assets/desktop/icon-search-white.svg);
 }
@@ -339,6 +344,14 @@ main > article > header {
     margin: -1.5em -1.5em 0;
     padding: 0.5em 1.5em;
     border-bottom: 1px solid var(--dark-gray-faded);
+}
+
+#mobileFiltersWrapper #resetFiltersButton {
+    text-align: center;
+    display: block;
+    color: var(--very-dark-blue);
+    margin-top: -0.75em;
+    text-decoration: none;
 }
 
 #mobileLocationSuggestions a {

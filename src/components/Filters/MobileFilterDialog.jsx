@@ -2,13 +2,18 @@ import { useJobList } from '../../hooks/useJobList.jsx'
 import LocationFilter from './LocationFilter.jsx'
 
 const MobileFilterDialog = ({ onClose = f => f }) => {
-  const { filters, updateFilters, applyFilters } = useJobList()
+  const { filters, hasActiveFilters, updateFilters, applyFilters, resetFilters } = useJobList()
 
   const toggleFullTimeOnly = () => updateFilters({ fullTimeOnly: !filters.fullTimeOnly })
 
   const handleSubmitSearch = e => {
     e.preventDefault()
     applyFilters(() => onClose())
+  }
+
+  const handleResetFilters = e => {
+    e.preventDefault()
+    resetFilters(() => onClose())
   }
 
   const { locationQuery, fullTimeOnly } = filters
@@ -24,6 +29,7 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
             Full Time Only
           </label>
           <button id="submitMobileSearch" className="button" onClick={handleSubmitSearch}>Search</button>
+          { hasActiveFilters && <a href="#" onClick={handleResetFilters} id="resetFiltersButton">Reset filters</a> }
         </div>
       </div>
     </>
