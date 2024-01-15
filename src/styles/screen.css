@@ -282,6 +282,14 @@ main > article > header {
     color: var(--violet);
     font-weight: 700;
     font-size: 0.875em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.job small b {
+    display:flex;
+    place-items: center;
+    column-gap: 0.5em;
 }
 
 #loadMoreButton {

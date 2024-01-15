@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import getTimeAgo from '../lib/dateUtil.js'
 import { trans } from '../lib/translate.js'
+import { FaLocationArrow, FaLocationCrosshairs } from 'react-icons/fa6'
 
 export const JobListItem = ({ job }) => {
   const company = job.company_detail
@@ -15,7 +16,11 @@ export const JobListItem = ({ job }) => {
           <h3>{job.title}</h3>
           <span>{company.name}</span>
         </header>
-        <small>{job.country}</small>
+        {job.distance ? (
+          <small>{job.city}, {job.country} {job.distance > 0 && (
+            <b><FaLocationArrow /> {job.distance} km</b>
+          )}</small>
+        ) : <small>{job.country}</small>}
       </Link>
     </li>
   )
