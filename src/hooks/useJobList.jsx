@@ -10,32 +10,33 @@ export function useJobList() {
 export function JobListProvider({ children }) {
   const [jobs, setJobs] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
-  const [isLoading, setIsLoading] = useState(true)
   const [hasMoreResults, setHasMoreResults] = useState(false)
-  const [filters, setFilters] = useState()
 
   const nextPage = () => {
-    setIsLoading(true)
-    setCurrentPage(currentPage + 1)
+    getJobList(currentPage + 1)
+      .then(json => {
+        setJobs(jobs => [...jobs, ...json.results])
+        setHasMoreResults(!!json.next)
+        setCurrentPage(currentPage + 1)
+      })
   }
 
-  const applyFilters = f => {
-    setFilters(f)
-    setIsLoading(true)
+  const applyFilters = filters => {
+    getJobList(1, filters)
+      .then(json => {
+        setJobs(json.results)
+        setHasMoreResults(!!json.next)
+        setCurrentPage(1)
+      })
   }
 
   useEffect(() => {
-    if (!isLoading) {
-      return
-    }
-
-    getJobList(currentPage, filters)
+    getJobList()
       .then(json => {
-        setJobs([...jobs, ...json.results])
-        setIsLoading(false)
+        setJobs(json.results)
         setHasMoreResults(!!json.next)
       })
-  }, [isLoading, jobs, currentPage, filters])
+  }, [])
 
   return (
     <JobListContext.Provider value={{ jobs, nextPage, hasMoreResults, applyFilters }}>
