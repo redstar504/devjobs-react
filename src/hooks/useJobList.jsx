@@ -11,6 +11,13 @@ export function JobListProvider({ children }) {
   const [jobs, setJobs] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [hasMoreResults, setHasMoreResults] = useState(false)
+  const [filters, setFilters] = useState({
+    lat: undefined,
+    lng: undefined,
+    placeId: undefined,
+    fullTimeOnly: false,
+    locationQuery: ''
+  })
 
   const nextPage = () => {
     getJobList(currentPage + 1)
@@ -21,13 +28,18 @@ export function JobListProvider({ children }) {
       })
   }
 
-  const applyFilters = filters => {
+  const applyFilters = onSuccess => {
     getJobList(1, filters)
       .then(json => {
         setJobs(json.results)
         setHasMoreResults(!!json.next)
         setCurrentPage(1)
+        onSuccess()
       })
+  }
+
+  const updateFilters = f => {
+    setFilters({ ...filters, ...f })
   }
 
   useEffect(() => {
@@ -39,7 +51,7 @@ export function JobListProvider({ children }) {
   }, [])
 
   return (
-    <JobListContext.Provider value={{ jobs, nextPage, hasMoreResults, applyFilters }}>
+    <JobListContext.Provider value={{ jobs, nextPage, hasMoreResults, applyFilters, filters, updateFilters }}>
       {children}
     </JobListContext.Provider>
   )

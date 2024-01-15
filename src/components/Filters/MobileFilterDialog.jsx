@@ -1,39 +1,25 @@
-import { useState } from 'react'
 import { useJobList } from '../../hooks/useJobList.jsx'
 import LocationFilter from './LocationFilter.jsx'
 
 const MobileFilterDialog = ({ onClose = f => f }) => {
-  const { applyFilters } = useJobList()
-  const [searchParams, setSearchParams] = useState({
-    lat: undefined,
-    lng: undefined,
-    placeId: undefined,
-    fullTimeOnly: false,
-    locationQuery: ''
-  })
+  const { filters, updateFilters, applyFilters } = useJobList()
 
-  const updateParams = p => {
-    setSearchParams({ ...searchParams, ...p })
-  }
-
-  const toggleFullTimeOnly = () => updateParams({ fullTimeOnly: !searchParams.fullTimeOnly })
-
+  const toggleFullTimeOnly = () => updateFilters({ fullTimeOnly: !filters.fullTimeOnly })
 
   const handleSubmitSearch = e => {
     e.preventDefault()
-    applyFilters(searchParams)
-    onClose()
+    applyFilters(() => onClose())
   }
 
-  const { locationQuery } = searchParams
+  const { locationQuery, fullTimeOnly } = filters
 
   return (
     <>
       <div id="mobileFiltersContainer" onClick={onClose}>
         <div id="mobileFiltersWrapper" onClick={e => e.stopPropagation()}>
-          <LocationFilter query={locationQuery} onUpdateParams={updateParams} />
+          <LocationFilter query={locationQuery} onUpdateParams={updateFilters} />
           <label id="mobileFullTimeQueryLabel">
-            <input type="checkbox" id="mobileFullTimeQuery" checked={searchParams.fullTimeOnly}
+            <input type="checkbox" id="mobileFullTimeQuery" checked={fullTimeOnly}
                    onChange={toggleFullTimeOnly} />
             Full Time Only
           </label>

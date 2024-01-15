@@ -6,7 +6,7 @@ const LocationFilter = ({ query, onUpdateParams = f => f }) => {
   const [isUsingAutocomplete, setIsUsingAutocomplete] = useState(false)
 
   const handleUseDeviceLocation = coords => {
-    onUpdateParams({ ...coords, locationQuery: undefined })
+    onUpdateParams({ ...coords, locationQuery: undefined, placeId: undefined })
     setIsUsingDeviceLocation(true)
   }
 
