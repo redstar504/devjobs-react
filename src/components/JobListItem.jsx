@@ -17,7 +17,7 @@ export const JobListItem = ({ job }) => {
           <span>{company.name}</span>
         </header>
         {job.distance ? (
-          <small>{job.city}, {job.country} {job.distance > 0 && (
+          <small>{job.city}, {job.country} {job.distance !== null && (
             <b><FaLocationArrow /> {job.distance} km</b>
           )}</small>
         ) : <small>{job.country}</small>}

@@ -1,6 +1,7 @@
 import { FaLocationCrosshairs, FaLocationDot } from 'react-icons/fa6'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { getPlaceRecommendations } from '../../lib/places.js'
+import debounce from 'lodash/debounce'
 
 const autocompleteEnabled = true
 
@@ -8,7 +9,7 @@ const LocationAssistant = ({
   query,
   onUseDeviceLocation = f => f,
   onUseAutocomplete = f => f,
-  locationHasFocus,
+  locationHasFocus
 }) => {
   const [suggestions, setSuggestions] = useState([])
 
@@ -17,15 +18,20 @@ const LocationAssistant = ({
     onUseAutocomplete(suggestions[i])
   }
 
+  const debounced = useCallback(debounce((query, cb) => cb(query), 350), [])
+
   useEffect(() => {
     if ('' === query || !autocompleteEnabled) return
-
-    getPlaceRecommendations(query, g => {
-      const mappedCities = g.map(({ description, place_id }) => ({
-        city: description,
-        placeId: place_id
-      })).slice(0, 3)
-      setSuggestions(mappedCities)
+    debounced(query, bouncedQuery => {
+      getPlaceRecommendations(bouncedQuery, g => {
+        if (null === g) return
+        const mappedCities = g.map(({ description, place_id }) => ({
+          city: description,
+          placeId: place_id
+        })).slice(0, 3)
+        console.log(`Provided location suggestions for "${query}"`)
+        setSuggestions(mappedCities)
+      })
     })
   }, [query])
 

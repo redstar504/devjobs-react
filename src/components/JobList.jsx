@@ -9,8 +9,9 @@ const JobList = () => {
     <>
       {hasActiveFilters && (
         <ul id="activeFilterList">
-          {filters.lat && filters.lng && (<li>Within 1000 km</li>)}
           {filters.locationQuery && (<li>{filters.locationQuery}</li>)}
+          {filters.lat && filters.lng && (<li>My location</li>)}
+          {((filters.lat && filters.lng) || filters.locationQuery) && (<li>1000 km</li>)}
           {filters.fullTimeOnly && (<li>Full Time</li>)}
           <li><a href="#" onClick={() => resetFilters()}><MdOutlineCancel /> Clear Filters</a></li>
         </ul>
