@@ -243,7 +243,7 @@ main > article > header {
 }
 
 #activeFilterList {
-    margin: 0 0 2.5em;
+    margin: -2.5em 0 2.5em;
     display: flex;
     column-gap: 0.625em;
 }
