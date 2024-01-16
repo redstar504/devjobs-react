@@ -7,7 +7,8 @@ const autocompleteEnabled = true
 const LocationAssistant = ({
   query,
   onUseDeviceLocation = f => f,
-  onUseAutocomplete = f => f
+  onUseAutocomplete = f => f,
+  locationHasFocus,
 }) => {
   const [suggestions, setSuggestions] = useState([])
 
@@ -20,8 +21,8 @@ const LocationAssistant = ({
     if ('' === query || !autocompleteEnabled) return
 
     getPlaceRecommendations(query, g => {
-      const mappedCities = g.map(({ structured_formatting: { main_text: city }, place_id }) => ({
-        city,
+      const mappedCities = g.map(({ description, place_id }) => ({
+        city: description,
         placeId: place_id
       })).slice(0, 3)
       setSuggestions(mappedCities)
@@ -30,6 +31,7 @@ const LocationAssistant = ({
 
   const handleUseMyLocation = e => {
     e.preventDefault()
+    console.log('Attempting to gather user location...')
 
     const success = geo => {
       onUseDeviceLocation({ lat: geo.coords.latitude, lng: geo.coords.longitude })
@@ -40,17 +42,17 @@ const LocationAssistant = ({
     })
   }
 
-  return query && (
+  return locationHasFocus && (
     <ul id="mobileLocationSuggestions">
       <li>
         <a href="#" onClick={e => handleUseMyLocation(e)}>
           <FaLocationCrosshairs /> Use current location
         </a>
       </li>
-      {!!suggestions.length && suggestions.map((s, i) => (
+      {query && !!suggestions.length && suggestions.map((s, i) => (
         <li key={i}>
           <a href="#" onClick={onAutocomplete(i)}>
-            <FaLocationDot /> {s.city}
+            <FaLocationDot /> <span>{s.city}</span>
           </a>
         </li>
       ))}

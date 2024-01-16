@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import LocationAssistant from './LocationAssistant.jsx'
 
-const LocationFilter = ({ query, onUpdateParams = f => f }) => {
-  const [isUsingDeviceLocation, setIsUsingDeviceLocation] = useState(false)
+const LocationFilter = ({ filters, onUpdateParams = f => f }) => {
   const [isUsingAutocomplete, setIsUsingAutocomplete] = useState(false)
+  const [locationHasFocus, setLocationHasFocus] = useState(false)
 
   const handleUseDeviceLocation = coords => {
-    onUpdateParams({ ...coords, locationQuery: undefined, placeId: undefined })
-    setIsUsingDeviceLocation(true)
+    onUpdateParams({ ...coords, locationQuery: '', placeId: undefined })
+  }
+
+  const handleCancelDeviceLocation = () => {
+    onUpdateParams({lat: undefined, lng: undefined});
   }
 
   const handleAutocomplete = ({ placeId, city }) => {
@@ -20,20 +23,41 @@ const LocationFilter = ({ query, onUpdateParams = f => f }) => {
     onUpdateParams({ locationQuery: e.target.value, placeId: undefined })
   }
 
+  const { locationQuery: query } = filters
+  const isUsingDeviceLocation = filters.lat && filters.lng;
   const assistantEnabled = !isUsingAutocomplete && !isUsingDeviceLocation
 
   return (
     <>
-      {isUsingDeviceLocation && <p>Using my location</p> || (
+      {isUsingDeviceLocation && (
+        <>
+          <label id="usingMyLocationLabel">
+            <input
+              type="checkbox"
+              id="usingMyLocation"
+              checked={isUsingDeviceLocation}
+              onChange={handleCancelDeviceLocation}
+            />
+            Near my location
+          </label>
+        </>
+      ) || (
         <input
           className="textField"
           placeholder="Filter by location..."
           onChange={handleQueryChange}
           value={query}
+          onFocus={() => setLocationHasFocus(true)}
         />
       )}
-      {assistantEnabled && <LocationAssistant query={query} onUseDeviceLocation={handleUseDeviceLocation}
-                                              onUseAutocomplete={handleAutocomplete} />}
+      {assistantEnabled &&
+        <LocationAssistant
+          query={query}
+          onUseDeviceLocation={handleUseDeviceLocation}
+          onUseAutocomplete={handleAutocomplete}
+          locationHasFocus={locationHasFocus}
+        />
+      }
     </>
   )
 }

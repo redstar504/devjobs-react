@@ -16,13 +16,13 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
     resetFilters(() => onClose())
   }
 
-  const { locationQuery, fullTimeOnly } = filters
+  const { fullTimeOnly } = filters;
 
   return (
     <>
       <div id="mobileFiltersContainer" onClick={onClose}>
         <div id="mobileFiltersWrapper" onClick={e => e.stopPropagation()}>
-          <LocationFilter query={locationQuery} onUpdateParams={updateFilters} />
+          <LocationFilter onUpdateParams={updateFilters} filters={filters} />
           <label id="mobileFullTimeQueryLabel">
             <input type="checkbox" id="mobileFullTimeQuery" checked={fullTimeOnly}
                    onChange={toggleFullTimeOnly} />
