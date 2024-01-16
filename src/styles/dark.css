@@ -6,10 +6,6 @@
     color: var(--very-dark-blue);
 }
 
-#darkModeEnabled #openMobileFiltersButton {
-    background-image: url(../assets/mobile/icon-filter-white.svg);
-}
-
 @media (min-width: 48em) {
     #darkModeEnabled .button.alternate {
         background-color: var(--dark-gray-faded);

@@ -226,27 +226,26 @@ main > article > header {
     display: none;
 }
 
-#searchForm button,
-#openMobileFiltersButton {
+#searchForm button {
     flex: 0 3em;
     padding: 0;
-    min-width: 0;
-    text-indent: -999em;
-    background-repeat: no-repeat;
-    background-position: center;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #openMobileFiltersButton {
-    background-image: url(../assets/mobile/icon-filter.svg);
+    background: none;
+    color: var(--very-dark-blue)
 }
 
-#openMobileFiltersButton.active,
-#darkModeEnabled #openMobileFiltersButton.active {
-    background-image: url(../assets/mobile/icon-filter-active.svg);
+#openMobileFiltersButton.active {
+    color: #F4D04E;
 }
 
-#searchForm #searchButton {
-    background-image: url(../assets/desktop/icon-search-white.svg);
+#searchForm button svg {
+    width: 24px;
+    height: 24px;
 }
 
 #activeFilterList {

@@ -1,4 +1,5 @@
 import MobileFiltersButton from './MobileFiltersButton.jsx'
+import { IoSearch } from 'react-icons/io5'
 
 const SearchForm = () => {
   return (
@@ -16,7 +17,9 @@ const SearchForm = () => {
         </label>
       </div>
       <MobileFiltersButton />
-      <button className="button" id="searchButton">Search</button>
+      <button className="button" id="searchButton">
+        <IoSearch />
+      </button>
     </form>
   )
 }

@@ -2,6 +2,7 @@ import { useReducer } from 'react'
 import { createPortal } from 'react-dom'
 import MobileFilterDialog from './MobileFilterDialog.jsx'
 import { useJobList } from '../../hooks/useJobList.jsx'
+import { IoBulbSharp } from 'react-icons/io5'
 
 const MobileFiltersButton = () => {
   const [areMobileFiltersOpen, toggleMobileFilters] = useReducer(v => !v, false)
@@ -11,11 +12,11 @@ const MobileFiltersButton = () => {
     <>
       {areMobileFiltersOpen && createPortal(<MobileFilterDialog
         onClose={toggleMobileFilters} />, document.getElementById('root'))}
-      <button id="openMobileFiltersButton" className={hasActiveFilters ? 'active' : ''} onClick={e => {
+      <button id="openMobileFiltersButton" className={"button" + (hasActiveFilters ? " active" : "")} onClick={e => {
         e.preventDefault()
         toggleMobileFilters()
       }}>
-        Filter
+        <IoBulbSharp />
       </button>
     </>
 
