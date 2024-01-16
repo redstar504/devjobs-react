@@ -42,6 +42,7 @@ export function JobListProvider({ children }) {
   }
 
   const resetFilters = (onSuccess = f => f) => {
+    console.log('Resetting all filters')
     setFilters({...initialFilters})
     setHasActiveFilters(false)
     onSuccess()
@@ -62,8 +63,8 @@ export function JobListProvider({ children }) {
         setCurrentPage(1)
         setHasActiveFilters(true)
       })
-      .catch(e => {
-        console.log('Handle the error here...')
+      .catch(() => {
+        console.error('Failed to filter job list')
         throwError()
       })
       .then(() => {
@@ -83,7 +84,10 @@ export function JobListProvider({ children }) {
         setJobs(json.results)
         setHasMoreResults(!!json.next)
       })
-      .catch(e => console.log('Handle the error here....'))
+      .catch(() => {
+        console.error(`Failed to fetch job list`)
+        throwError()
+      })
   }, [hasActiveFilters])
 
   return (

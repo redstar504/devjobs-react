@@ -1,13 +1,13 @@
 import { GiSurprisedSkull } from "react-icons/gi";
-import { Link } from 'react-router-dom'
 
-const ErrorPage = () => {
+const ErrorPage = ({onResetError}) => {
+
   return (
-    <Link to={"/"} id="errorWrapper">
+    <a href="#" onClick={() => onResetError()} id="errorWrapper">
       <span>An Unexpected Error Occurred</span>
       <GiSurprisedSkull size={288} />
-      <span>Please try again later</span>
-    </Link>
+      <span>Click here to try again</span>
+    </a>
   )
 }
 

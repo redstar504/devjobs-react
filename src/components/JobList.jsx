@@ -12,7 +12,7 @@ const JobList = () => {
           {filters.lat && filters.lng && (<li>Within 1000 km</li>)}
           {filters.locationQuery && (<li>{filters.locationQuery}</li>)}
           {filters.fullTimeOnly && (<li>Full Time</li>)}
-          <li><a href="#" onClick={resetFilters}><MdOutlineCancel /> Clear Filters</a></li>
+          <li><a href="#" onClick={() => resetFilters()}><MdOutlineCancel /> Clear Filters</a></li>
         </ul>
       )}
       {jobs.length > 0 && (

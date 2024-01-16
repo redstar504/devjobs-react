@@ -26,6 +26,7 @@ export default function Root() {
   const startLoading = () => setIsLoading(true)
   const stopLoading = () => setIsLoading(false)
   const throwError = () => setHasError(true)
+  const resetError = () => setHasError(false)
 
   return (
     <>
@@ -39,8 +40,8 @@ export default function Root() {
             </h1>
             <DarkModeControl onToggleMode={toggleDarkMode} />
           </header>
-          {hasError && <ErrorPage /> || (
-            <AppStatusContext.Provider value={{startLoading, stopLoading, throwError, hasError}}>
+          {hasError && <ErrorPage onResetError={resetError} /> || (
+            <AppStatusContext.Provider value={{startLoading, stopLoading, throwError}}>
               <JobListProvider>
                 <Outlet />
               </JobListProvider>
