@@ -29,6 +29,7 @@ export function JobListProvider({ children }) {
   const [currentPage, setCurrentPage] = useState(1)
   const [hasMoreResults, setHasMoreResults] = useState(false)
   const [hasActiveFilters, setHasActiveFilters] = useState(false)
+  const [isIgnoringDeviceLocation, setIsIgnoringDeviceLocation] = useState(false)
   const [filters, setFilters] = useState({...initialFilters})
   const { startLoading, stopLoading, throwError } = useContext(AppStatusContext)
 
@@ -90,9 +91,11 @@ export function JobListProvider({ children }) {
       })
   }, [hasActiveFilters])
 
+  const ignoreDeviceLocation = () => setIsIgnoringDeviceLocation(true)
+
   return (
     <JobListContext.Provider
-      value={{ jobs, nextPage, hasMoreResults, applyFilters, filters, updateFilters, hasActiveFilters, resetFilters }}>
+      value={{ jobs, nextPage, hasMoreResults, applyFilters, filters, updateFilters, hasActiveFilters, resetFilters, ignoreDeviceLocation, isIgnoringDeviceLocation }}>
       {children}
     </JobListContext.Provider>
   )

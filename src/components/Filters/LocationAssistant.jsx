@@ -9,7 +9,9 @@ const LocationAssistant = ({
   query,
   onUseDeviceLocation = f => f,
   onUseAutocomplete = f => f,
-  locationHasFocus
+  locationHasFocus,
+  onIgnoreDeviceLocation = f => f,
+  isIgnoringDeviceLocation,
 }) => {
   const [suggestions, setSuggestions] = useState([])
 
@@ -44,21 +46,26 @@ const LocationAssistant = ({
     }
 
     navigator.geolocation.getCurrentPosition(success, () => {
+      onIgnoreDeviceLocation()
       alert('Geolocation unavailable, or has been declined by device settings.')
     })
   }
 
-  return locationHasFocus && (
+  const shouldShowSuggestions = query && !!suggestions.length
+
+  return locationHasFocus && (shouldShowSuggestions || !isIgnoringDeviceLocation) && (
     <ul id="mobileLocationSuggestions">
-      <li>
-        <a href="#" onClick={e => handleUseMyLocation(e)}>
-          <FaLocationCrosshairs /> Use current location
-        </a>
-      </li>
-      {query && !!suggestions.length && suggestions.map((s, i) => (
+      {!isIgnoringDeviceLocation && (
+        <li>
+          <a href="#" onClick={e => handleUseMyLocation(e)}>
+            <FaLocationCrosshairs /> Use current location
+          </a>
+        </li>
+      )}
+      {shouldShowSuggestions && suggestions.map((s, i) => (
         <li key={i}>
           <a href="#" onClick={onAutocomplete(i)}>
-            <FaLocationDot /> <span>{s.city}</span>
+          <FaLocationDot /> <span>{s.city}</span>
           </a>
         </li>
       ))}

@@ -1,7 +1,12 @@
 import { useState } from 'react'
 import LocationAssistant from './LocationAssistant.jsx'
 
-const LocationFilter = ({ filters, onUpdateParams = f => f }) => {
+const LocationFilter = ({
+  filters,
+  onUpdateParams = f => f,
+  onIgnoreDeviceLocation = f => f,
+  isIgnoringDeviceLocation
+}) => {
   const [isUsingAutocomplete, setIsUsingAutocomplete] = useState(false)
   const [locationHasFocus, setLocationHasFocus] = useState(false)
 
@@ -56,6 +61,8 @@ const LocationFilter = ({ filters, onUpdateParams = f => f }) => {
           onUseDeviceLocation={handleUseDeviceLocation}
           onUseAutocomplete={handleAutocomplete}
           locationHasFocus={locationHasFocus}
+          onIgnoreDeviceLocation={onIgnoreDeviceLocation}
+          isIgnoringDeviceLocation={isIgnoringDeviceLocation}
         />
       }
     </>
