@@ -1,8 +1,9 @@
 import { useJobList } from '../hooks/useJobList.jsx'
 import { JobListItem } from './JobListItem.jsx'
+import { MdOutlineCancel } from 'react-icons/md'
 
 const JobList = () => {
-  const { jobs, nextPage, hasMoreResults, hasActiveFilters, filters } = useJobList()
+  const { jobs, nextPage, hasMoreResults, hasActiveFilters, filters, resetFilters } = useJobList()
 
   return (
     <>
@@ -11,6 +12,7 @@ const JobList = () => {
           {filters.lat && filters.lng && (<li>Within 1000 km</li>)}
           {filters.locationQuery && (<li>{filters.locationQuery}</li>)}
           {filters.fullTimeOnly && (<li>Full Time</li>)}
+          <li><a href="#" onClick={resetFilters}><MdOutlineCancel /> Clear Filters</a></li>
         </ul>
       )}
       {jobs.length > 0 && (

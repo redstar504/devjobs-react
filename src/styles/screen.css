@@ -243,7 +243,7 @@ main > article > header {
 }
 
 #activeFilterList {
-    margin: 0 0 2.25em;
+    margin: 0 0 2.5em;
     display: flex;
     column-gap: 0.625em;
 }
@@ -255,6 +255,18 @@ main > article > header {
     border-radius: 0.25rem;
     background: var(--white);
     font-weight: 700;
+}
+
+#activeFilterList li a {
+    color: var(--very-dark-blue);
+    text-decoration: none;
+    display:flex;
+    align-items: center;
+    column-gap: 0.25em;
+}
+
+#activeFilterList svg {
+    font-size: 1rem;
 }
 
 #jobList {
