@@ -13,7 +13,7 @@ export const AppStatusContext = createContext({})
 export default function Root() {
   const [useDarkMode, toggleDarkMode] = useReducer(enabled => !enabled, isDarkModeOperatingSystem())
   const [isLoading, setIsLoading] = useState(false)
-  const [hasError, setHasError] = useState(true)
+  const [hasError, setHasError] = useState(false)
 
   useEffect(() => {
     if (useDarkMode) {
