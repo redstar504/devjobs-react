@@ -24,8 +24,7 @@ export default function Root() {
         <header>
           <h1>
             <Link to="/">
-              devjobs
-              <span></span>
+              <span>desklegends</span>
             </Link>
           </h1>
           <DarkModeControl onToggleMode={toggleDarkMode} />

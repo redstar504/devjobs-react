@@ -157,17 +157,22 @@ main > article {
 }
 
 h1 {
-    font-size: 1.75em;
+    font-size: 2em;
     color: var(--fixed-white);
     width: 7.1875rem;
     height: 2rem;
     position: relative;
-    text-indent: -99em;
+    line-height: 0.75;
+}
+
+h1 a {
+    text-decoration: none;
+    color: var(--fixed-white);
 }
 
 h1 span {
     position: absolute;
-    background: url(../assets/desktop/logo.svg) 0 0 no-repeat;
+    /*background: url(../assets/desktop/logo.svg) 0 0 no-repeat;*/
     top: .2rem;
     left: 0;
     width: 100%;
