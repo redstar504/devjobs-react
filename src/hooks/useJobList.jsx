@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { getJobList } from '../lib/API.js'
+import { AppStatusContext } from '../routes/root.jsx'
 
 const JobListContext = createContext()
 
@@ -29,6 +30,7 @@ export function JobListProvider({ children }) {
   const [hasMoreResults, setHasMoreResults] = useState(false)
   const [hasActiveFilters, setHasActiveFilters] = useState(false)
   const [filters, setFilters] = useState({...initialFilters})
+  const { startLoading, stopLoading, throwError } = useContext(AppStatusContext)
 
   const nextPage = () => {
     getJobList(currentPage + 1)
@@ -51,13 +53,22 @@ export function JobListProvider({ children }) {
       return;
     }
 
+    startLoading()
+
     getJobList(1, filters)
       .then(json => {
         setJobs(json.results)
         setHasMoreResults(!!json.next)
         setCurrentPage(1)
         setHasActiveFilters(true)
+      })
+      .catch(e => {
+        console.log('Handle the error here...')
+        throwError()
+      })
+      .then(() => {
         onSuccess()
+        stopLoading()
       })
   }
 
@@ -72,6 +83,7 @@ export function JobListProvider({ children }) {
         setJobs(json.results)
         setHasMoreResults(!!json.next)
       })
+      .catch(e => console.log('Handle the error here....'))
   }, [hasActiveFilters])
 
   return (
