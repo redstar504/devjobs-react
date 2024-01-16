@@ -33,7 +33,7 @@ const LocationAssistant = ({
         setSuggestions(mappedCities)
       })
     })
-  }, [query])
+  }, [debounced, query])
 
   const handleUseMyLocation = e => {
     e.preventDefault()
