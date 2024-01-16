@@ -229,7 +229,7 @@ main > article > header {
 #searchForm button {
     flex: 0 3em;
     padding: 0;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -280,6 +280,22 @@ main > article > header {
     row-gap: 3.5625em;
     column-gap: .6875em;
     margin: 0 0 2em;
+}
+
+#noJobsFound {
+    text-align: center;
+    font-size: 1em;
+    font-weight: 700;
+    margin: 5em 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2em;
+}
+
+#noJobsFound svg {
+    width: 4em;
+    height: 4em;
 }
 
 .job {

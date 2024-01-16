@@ -8,11 +8,14 @@ const MobileFiltersButton = () => {
   const [areMobileFiltersOpen, toggleMobileFilters] = useReducer(v => !v, false)
   const { hasActiveFilters } = useJobList()
 
+  // todo: figure out why this context function becomes undefined during hot swaps
+  const activeFilters = hasActiveFilters !== undefined && hasActiveFilters;
+
   return (
     <>
       {areMobileFiltersOpen && createPortal(<MobileFilterDialog
         onClose={toggleMobileFilters} />, document.getElementById('root'))}
-      <button id="openMobileFiltersButton" className={"button" + (hasActiveFilters ? " active" : "")} onClick={e => {
+      <button id="openMobileFiltersButton" className={"button" + (activeFilters ? " active" : "")} onClick={e => {
         e.preventDefault()
         toggleMobileFilters()
       }}>

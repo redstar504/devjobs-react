@@ -1,6 +1,6 @@
 import { useJobList } from '../hooks/useJobList.jsx'
 import { JobListItem } from './JobListItem.jsx'
-import { MdOutlineCancel } from 'react-icons/md'
+import { MdOutlineCancel, MdOutlineFilterNone } from 'react-icons/md'
 
 const JobList = () => {
   const { jobs, nextPage, hasMoreResults, hasActiveFilters, filters, resetFilters } = useJobList()
@@ -23,6 +23,11 @@ const JobList = () => {
           </ul>
           {hasMoreResults && <button id="loadMoreButton" className="button" onClick={nextPage}>Load More</button>}
         </>
+      ) || (
+        <div id="noJobsFound">
+          <MdOutlineFilterNone />
+          No jobs matching your supplied filters
+        </div>
       )}
     </>
   )
