@@ -3,11 +3,21 @@ import { IoSearch } from 'react-icons/io5'
 import { useJobList } from '../../hooks/useJobList.jsx'
 
 const SearchForm = () => {
-  console.log("Rendering search form")
-  const { filters, updateFilters, applyFilters } = useJobList()
+  const { filtering, applyFilters } = useJobList()
+  const { dispatch, filters } = filtering
+
 
   const handleKeywordChange = e => {
-    updateFilters({keywords: e.target.value})
+    dispatch({
+      type: 'UPDATE_KEYWORDS',
+      keywords: e.target.value
+    })
+  }
+
+  const toggleFullTimeOnly = () => {
+    dispatch({
+      type: 'TOGGLE_FULL_TIME',
+    })
   }
 
   const handleSubmit = e => {
@@ -24,13 +34,13 @@ const SearchForm = () => {
         <input className="textField" placeholder="Filter by location.." />
       </label>
       <div id="fullTimeQueryWrapper">
-        <input id="fullTimeQuery" type="checkbox" />
+        <input id="fullTimeQuery" type="checkbox" checked={filters.fullTimeOnly} onChange={toggleFullTimeOnly} />
         <label htmlFor="fullTimeQuery">
           Full Time <b>Only</b>
         </label>
       </div>
       <MobileFiltersButton />
-      <button className="button" id="searchButton">
+      <button type="submit" className="button" id="searchButton">
         <IoSearch />
       </button>
     </form>

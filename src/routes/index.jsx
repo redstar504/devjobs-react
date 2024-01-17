@@ -1,5 +1,6 @@
 import SearchForm from '../components/Filters/SearchForm.jsx'
 import JobList from '../components/JobList.jsx'
+import ActiveFilterList from '../components/Filters/ActiveFilterList.jsx'
 
 const Index = () => {
 
@@ -7,6 +8,7 @@ const Index = () => {
     <>
       <section>
         <SearchForm />
+        <ActiveFilterList />
         <JobList />
       </section>
     </>

@@ -1,18 +1,18 @@
 import { useJobList } from '../../hooks/useJobList.jsx'
 import LocationFilter from './LocationFilter.jsx'
+import PropTypes from 'prop-types'
 
 const MobileFilterDialog = ({ onClose = f => f }) => {
   const {
-    filters,
-    hasActiveFilters,
-    updateFilters,
+    filtering,
     applyFilters,
-    resetFilters,
-    ignoreDeviceLocation,
-    isIgnoringDeviceLocation
   } = useJobList()
 
-  const toggleFullTimeOnly = () => updateFilters({ fullTimeOnly: !filters.fullTimeOnly })
+  const { filters, dispatch, hasActiveFilters } = filtering
+
+  const toggleFullTimeOnly = () => dispatch({
+    type: 'TOGGLE_FULL_TIME'
+  })
 
   const handleSubmitSearch = e => {
     e.preventDefault()
@@ -21,32 +21,41 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
 
   const handleResetFilters = e => {
     e.preventDefault()
-    resetFilters(() => onClose())
+    dispatch({
+      type: 'RESET_FILTERS'
+    })
   }
-
-  const { fullTimeOnly } = filters
 
   return (
     <>
       <div id="mobileFiltersContainer" onClick={onClose}>
         <div id="mobileFiltersWrapper" onClick={e => e.stopPropagation()}>
-          <LocationFilter
-            onUpdateParams={updateFilters}
-            filters={filters}
-            onIgnoreDeviceLocation={ignoreDeviceLocation}
-            isIgnoringDeviceLocation={isIgnoringDeviceLocation}
-          />
+          <LocationFilter />
           <label id="mobileFullTimeQueryLabel">
-            <input type="checkbox" id="mobileFullTimeQuery" checked={fullTimeOnly}
-                   onChange={toggleFullTimeOnly} />
+            <input
+              type="checkbox"
+              id="mobileFullTimeQuery"
+              checked={filters.fullTimeOnly}
+              onChange={toggleFullTimeOnly}
+            />
             Full Time Only
           </label>
-          <button id="submitMobileSearch" className="button" onClick={handleSubmitSearch}>Search</button>
+          <button
+            id="submitMobileSearch"
+            className="button"
+            onClick={handleSubmitSearch}
+          >
+            Search
+          </button>
           {hasActiveFilters && <a href="#" onClick={handleResetFilters} id="resetFiltersButton">Reset filters</a>}
         </div>
       </div>
     </>
   )
+}
+
+MobileFilterDialog.propTypes = {
+  onClose: PropTypes.func
 }
 
 export default MobileFilterDialog

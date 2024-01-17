@@ -1,35 +1,46 @@
 import { useState } from 'react'
 import LocationAssistant from './LocationAssistant.jsx'
+import { useJobList } from '../../hooks/useJobList.jsx'
 
-const LocationFilter = ({
-  filters,
-  onUpdateParams = f => f,
-  onIgnoreDeviceLocation = f => f,
-  isIgnoringDeviceLocation
-}) => {
+const LocationFilter = () => {
   const [isUsingAutocomplete, setIsUsingAutocomplete] = useState(false)
   const [locationHasFocus, setLocationHasFocus] = useState(false)
 
+  const { filtering, settings } = useJobList()
+  const { dispatch, filters } = filtering
+  const { isIgnoringDeviceLocation, setIsIgnoringDeviceLocation } = settings
+
   const handleUseDeviceLocation = coords => {
-    onUpdateParams({ ...coords, locationQuery: '', placeId: undefined })
+    dispatch({
+      type: 'USE_DEVICE_LOCATION',
+      coords
+    })
   }
 
   const handleCancelDeviceLocation = () => {
-    onUpdateParams({lat: undefined, lng: undefined});
+    dispatch({
+      type: 'CANCEL_DEVICE_LOCATION'
+    })
   }
 
   const handleAutocomplete = ({ placeId, city }) => {
-    onUpdateParams({ placeId, locationQuery: city })
+    dispatch({
+      type: 'USE_AUTO_COMPLETE',
+      placeId,
+      city
+    })
     setIsUsingAutocomplete(true)
   }
 
   const handleQueryChange = e => {
+    dispatch({
+      type: 'SET_EXPLICIT_LOCATION',
+      locationQuery: e.target.value
+    })
     setIsUsingAutocomplete(false)
-    onUpdateParams({ locationQuery: e.target.value, placeId: undefined })
   }
 
-  const { locationQuery: query } = filters
-  const isUsingDeviceLocation = filters.lat && filters.lng;
+  const isUsingDeviceLocation = filters.lat && filters.lng
   const assistantEnabled = !isUsingAutocomplete && !isUsingDeviceLocation
 
   return (
@@ -51,17 +62,17 @@ const LocationFilter = ({
           className="textField"
           placeholder="Filter by location..."
           onChange={handleQueryChange}
-          value={query}
+          value={filters.locationQuery}
           onFocus={() => setLocationHasFocus(true)}
         />
       )}
       {assistantEnabled &&
         <LocationAssistant
-          query={query}
+          query={filters.locationQuery}
           onUseDeviceLocation={handleUseDeviceLocation}
           onUseAutocomplete={handleAutocomplete}
           locationHasFocus={locationHasFocus}
-          onIgnoreDeviceLocation={onIgnoreDeviceLocation}
+          onIgnoreDeviceLocation={() => setIsIgnoringDeviceLocation()}
           isIgnoringDeviceLocation={isIgnoringDeviceLocation}
         />
       }
