@@ -13,7 +13,8 @@ const initialFilters = {
   lng: undefined,
   placeId: undefined,
   fullTimeOnly: false,
-  locationQuery: ''
+  locationQuery: '',
+  keywords: '',
 }
 
 const isInitialFilterSet = f => {
@@ -21,7 +22,8 @@ const isInitialFilterSet = f => {
     f.lng === initialFilters.lng &&
     f.placeId === initialFilters.placeId &&
     f.fullTimeOnly === initialFilters.fullTimeOnly &&
-    f.locationQuery === initialFilters.locationQuery
+    f.locationQuery === initialFilters.locationQuery &&
+    f.keywords === initialFilters.keywords
 }
 
 export function JobListProvider({ children }) {
@@ -31,19 +33,20 @@ export function JobListProvider({ children }) {
   const [hasActiveFilters, setHasActiveFilters] = useState(false)
   const [isIgnoringDeviceLocation, setIsIgnoringDeviceLocation] = useState(false)
   const [filters, setFilters] = useState({...initialFilters})
+  const [numResults, setNumResults] = useState(0)
   const { startLoading, stopLoading, throwError } = useContext(AppStatusContext)
 
   const nextPage = () => {
     getJobList(currentPage + 1)
       .then(json => {
         setJobs(jobs => [...jobs, ...json.results])
+        setNumResults(json.count)
         setHasMoreResults(!!json.next)
         setCurrentPage(currentPage + 1)
       })
   }
 
   const resetFilters = (onSuccess = f => f) => {
-    console.log('Resetting all filters')
     setFilters({...initialFilters})
     setHasActiveFilters(false)
     onSuccess()
@@ -61,6 +64,7 @@ export function JobListProvider({ children }) {
       .then(json => {
         setJobs(json.results)
         setHasMoreResults(!!json.next)
+        setNumResults(json.count)
         setCurrentPage(1)
         setHasActiveFilters(true)
       })
@@ -95,7 +99,19 @@ export function JobListProvider({ children }) {
 
   return (
     <JobListContext.Provider
-      value={{ jobs, nextPage, hasMoreResults, applyFilters, filters, updateFilters, hasActiveFilters, resetFilters, ignoreDeviceLocation, isIgnoringDeviceLocation }}>
+      value={{
+        jobs,
+        nextPage,
+        hasMoreResults,
+        applyFilters,
+        filters,
+        updateFilters,
+        hasActiveFilters,
+        resetFilters,
+        ignoreDeviceLocation,
+        isIgnoringDeviceLocation,
+        numResults
+    }}>
       {children}
     </JobListContext.Provider>
   )

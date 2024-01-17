@@ -16,11 +16,12 @@ export const JobListItem = ({ job }) => {
           <h3>{job.title}</h3>
           <span>{company.name}</span>
         </header>
-        {job.distance ? (
-          <small>{job.city}, {job.country} {job.distance !== null && (
+        <small>
+          {job.city}, {job.country}
+          {job.distance !== null && (
             <b><FaLocationArrow /> {job.distance} km</b>
-          )}</small>
-        ) : <small>{job.country}</small>}
+          )}
+        </small>
       </Link>
     </li>
   )
