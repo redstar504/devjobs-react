@@ -8,7 +8,7 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
     applyFilters,
   } = useJobList()
 
-  const { filters, dispatch, hasActiveFilters } = filtering
+  const { filters, dispatch, hasActiveFilters, resetFilters } = filtering
 
   const toggleFullTimeOnly = () => dispatch({
     type: 'TOGGLE_FULL_TIME'
@@ -21,9 +21,7 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
 
   const handleResetFilters = e => {
     e.preventDefault()
-    dispatch({
-      type: 'RESET_FILTERS'
-    })
+    resetFilters(() => onClose())
   }
 
   return (
