@@ -18,7 +18,7 @@ const JobList = () => {
             {filters.fullTimeOnly && (<li>Full Time</li>)}
             <li><a href="#" onClick={() => resetFilters()}><MdOutlineCancel /> Clear Filters</a></li>
           </ul>
-          <p id="numResults">We found {numResults} jobs matching your filters</p>
+          <p id="numResults">There are {numResults} jobs matching your filters</p>
         </>
       )}
       {jobs.length > 0 && (
