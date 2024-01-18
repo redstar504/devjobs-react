@@ -43,4 +43,7 @@ Some notes about the project:
 - Both the front-end and the back-end of this project are hosted courtesy of the Render platform.
 - Each project builds and deploys automatically upon pushing to the main branch on GitHub.
 
+#### Todo
+- The vars used for colors should be translated to a more semantic naming system, since the colors referenced in dark mode are not represented properly by the actual color names.
+
 If testing the app and any display issues or bugs are encountered, please open an issue on this GitHub repo.
