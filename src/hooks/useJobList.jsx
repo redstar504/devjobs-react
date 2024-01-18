@@ -24,8 +24,7 @@ export function JobListProvider({ children }) {
   const { filters, applyFilters, resetFilters } = filtering
 
   function jobHydrator(page, filters) {
-    // wait before starting loading spinner so it doesn't flash on fast connections
-    const loadingTimeout = setTimeout(() => startLoading(), 1000)
+    startLoading()
 
     return getJobList(page, filters)
       .then(json => {
