@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import { getJobList } from '../lib/API.js'
 import { AppStatusContext } from '../routes/root.jsx'
 import useJobFilters from './useJobFilters.js'
@@ -20,56 +20,52 @@ export function JobListProvider({ children }) {
   const [isIgnoringDeviceLocation, setIsIgnoringDeviceLocation] = useState(false)
 
   const filtering = useJobFilters()
-  const { validateFilters, hasActiveFilters, filterKey } = filtering;
+  const { applyFilters, filters } = filtering
 
-  const nextPage = () => {
-    const nextPage = currentPage + 1;
-    getJobList(nextPage)
-      .then(json => {
-        setJobs(jobs => [...jobs, ...json.results])
-        setNumResults(json.count)
-        setHasMoreResults(!!json.next)
-        setCurrentPage(nextPage)
-      })
-      .catch(() => {
-        console.error(`[Job List] failed to fetch page ${nextPage}`)
-      })
-  }
-
-  const applyFilters = (onSuccess = f => f) => {
+  function jobHydrator(page, filters) {
     startLoading()
-    validateFilters(filters => {
-      getJobList(1, filters)
-        .then(json => {
-          setJobs(json.results)
-          setHasMoreResults(!!json.next)
-          setNumResults(json.count)
-          setCurrentPage(1)
-        })
-        .catch(() => {
-          console.error('[Job List] failed to fetch filtered results')
-          throwError()
-        })
-        .then(() => {
-          onSuccess()
-          stopLoading()
-        })
-    })
-  }
-
-  useEffect(() => {
-    if (hasActiveFilters) return
-    getJobList()
+    return getJobList(page, filters)
       .then(json => {
-        setJobs(json.results)
         setNumResults(json.count)
         setHasMoreResults(!!json.next)
+        return json.results
       })
       .catch(() => {
         console.error(`[Job List] failed to fetch all jobs`)
         throwError()
+        return {}
       })
-  }, [throwError, hasActiveFilters])
+      .then(json => {
+        stopLoading()
+        return json
+      })
+  }
+
+  const hydrateJobs = useCallback(jobHydrator, [])
+
+  useEffect(() => {
+    hydrateJobs(1).then(results => {
+      setJobs(results)
+    })
+  }, [hydrateJobs])
+
+  const nextPage = () => {
+    const nextPage = currentPage + 1
+    setCurrentPage(nextPage)
+    hydrateJobs(nextPage, filters).then(results => {
+      setJobs([...jobs, ...results])
+    })
+  }
+
+  const applyJobFilters = () => {
+    applyFilters(filters => {
+      hydrateJobs(1, filters).then(results => {
+        setJobs([])
+        setCurrentPage(1)
+        setJobs(results)
+      })
+    })
+  }
 
   return (
     <JobListContext.Provider
@@ -78,13 +74,13 @@ export function JobListProvider({ children }) {
         numResults,
         hasMoreResults,
         nextPage,
-        applyFilters,
+        applyJobFilters,
         filtering,
         settings: {
           isIgnoringDeviceLocation: isIgnoringDeviceLocation,
           setIsIgnoringDeviceLocation: () => setIsIgnoringDeviceLocation(true)
         }
-    }}>
+      }}>
       {children}
     </JobListContext.Provider>
   )

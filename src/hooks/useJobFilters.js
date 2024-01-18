@@ -34,12 +34,12 @@ export default function useJobFilters() {
     onSuccess(filters)
   }
 
-  const validateFilters = (onSuccess = f => f) => {
-    console.log('[Job Filters] validating filters')
-    toggleFilterKey()
+  const applyFilters = (onSuccess = f => f) => {
+    console.log('[Job Filters] applying filters')
     if (isInitialFilterSet(filters)) {
       return resetFilters(onSuccess)
     }
+    toggleFilterKey()
     setHasActiveFilters(true)
     return onSuccess(filters)
   }
@@ -47,7 +47,7 @@ export default function useJobFilters() {
   return {
     filters,
     dispatch,
-    validateFilters,
+    applyFilters,
     resetFilters,
     hasActiveFilters,
     filterKey,
