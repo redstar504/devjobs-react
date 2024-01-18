@@ -20,8 +20,10 @@ export default function Root() {
 
   useEffect(() => {
     if (useDarkMode) {
+      localStorage.setItem('darkModeEnabled', true)
       document.body.id = 'darkModeEnabled'
     } else {
+      localStorage.setItem('darkModeEnabled', false)
       document.body.id = ''
     }
   }, [useDarkMode])
