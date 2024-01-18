@@ -40,7 +40,6 @@ export function JobListProvider({ children }) {
       .then(json => {
         setIsInitialized(true)
         stopLoading()
-        clearTimeout(loadingTimeout)
         return json
       })
   }
