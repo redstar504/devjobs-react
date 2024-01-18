@@ -27,7 +27,12 @@ const SearchForm = () => {
   return (
     <form id="searchForm" onSubmit={e => handleSubmit(e)}>
       <label className="fieldWrapper" id="titleQueryLabel">
-        <input onChange={handleKeywordChange} value={filters.keywords} className="textField" placeholder="Filter by title.." />
+        <input
+          onChange={handleKeywordChange}
+          value={filters.keywords}
+          className="textField"
+          placeholder="Filter by keywords..."
+        />
       </label>
       <LocationFilter labelId="locationQueryLabel" labelClassName="fieldWrapper" />
       <label id="fullTimeQueryLabel">
