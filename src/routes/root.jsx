@@ -11,6 +11,8 @@ import ErrorPage from '../error-page.jsx'
 
 export const AppStatusContext = createContext({})
 
+const siteName = import.meta.env.VITE_SITE_NAME
+
 export default function Root() {
   const [useDarkMode, toggleDarkMode] = useReducer(enabled => !enabled, isDarkModeOperatingSystem())
   const [isLoading, setIsLoading] = useState(false)
@@ -36,7 +38,7 @@ export default function Root() {
           <header>
             <h1>
               <Link to="/">
-                <span>desklegends</span>
+                <span>{siteName}</span>
               </Link>
             </h1>
             <DarkModeControl onToggleMode={toggleDarkMode} />
