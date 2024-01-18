@@ -194,7 +194,6 @@ main > article > header {
     align-items: center;
     margin: 0 0 3.5625em;
     padding: 0 1em;
-    overflow: hidden;
 }
 
 #searchForm .fieldWrapper {
@@ -246,21 +245,37 @@ main > article > header {
     height: 24px;
 }
 
+#jobListMetaWrapper {
+    display: flex;
+    flex-direction: row;
+    margin: -2.5625em 0 4.375em;
+    flex-wrap: wrap;
+    row-gap: 0.5em;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--light-gray);
+}
+
 #activeFilterList {
-    margin: -2.5em 0 2.5em;
     display: flex;
     column-gap: 0.625em;
-    color: var(--very-dark-blue)
+    color: var(--very-dark-blue);
+    flex-wrap: wrap;
+    row-gap: 0.5em;
 }
 
 #activeFilterList li {
     font-size: 0.75em;
-    background: red;
     padding: 0.25em 0.5em;
     border-radius: 0.25rem;
     background: var(--white);
     font-weight: 700;
+    max-width: 20.4375em;
+    overflow:hidden;
+    text-overflow: ellipsis;
 }
+
 
 #activeFilterList li a {
     color: var(--very-dark-blue);
@@ -275,7 +290,6 @@ main > article > header {
 }
 
 #numResults {
-    margin: -3em 0 3.5em;
     font-size: 0.75em;
     color: var(--dark-gray);
 }
@@ -399,12 +413,14 @@ main > article > header {
     padding: 0 0 0 3.5625em;
 }
 
-#mobileFiltersWrapper #mobileLocationSuggestions {
+#locationSuggestions {
     display: block;
     background: var(--light-gray);
     margin: -1.5em -1.5em 0;
     padding: 0.5em 1.5em;
     border-bottom: 1px solid var(--dark-gray-faded);
+    z-index: 1;
+    position: relative;
 }
 
 #mobileFiltersWrapper #resetFiltersButton {
@@ -415,7 +431,7 @@ main > article > header {
     text-decoration: none;
 }
 
-#mobileLocationSuggestions a {
+#locationSuggestions a {
     text-decoration: none;
     font-weight: 700;
     line-height: 2;
@@ -426,13 +442,13 @@ main > article > header {
     white-space: nowrap;
 }
 
-#mobileLocationSuggestions svg {
+#locationSuggestions svg {
     flex-basis: 0.75em;
     min-width: 0.75em;
     flex-shrink: 0;
 }
 
-#mobileLocationSuggestions span {
+#locationSuggestions span {
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -569,6 +585,15 @@ main > article > header {
 
     #loadMoreButton {
         margin: 0 auto 1.1875em;
+    }
+
+    #locationSuggestions {
+        border: none;
+        border-radius: 0.375em;
+        position: absolute;
+        box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
+        min-width: 17.4375em;
+        background: var(--white);
     }
 }
 

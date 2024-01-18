@@ -1,6 +1,7 @@
 import MobileFiltersButton from './MobileFiltersButton.jsx'
 import { IoSearch } from 'react-icons/io5'
 import { useJobList } from '../../hooks/useJobList.jsx'
+import LocationFilter from './LocationFilter.jsx'
 
 const SearchForm = () => {
   const { filtering, applyFilters } = useJobList()
@@ -31,7 +32,7 @@ const SearchForm = () => {
         <input onChange={handleKeywordChange} value={filters.keywords} className="textField" placeholder="Filter by title.." />
       </label>
       <label className="fieldWrapper" id="locationQueryLabel">
-        <input className="textField" placeholder="Filter by location.." />
+        <LocationFilter />
       </label>
       <div id="fullTimeQueryWrapper">
         <input id="fullTimeQuery" type="checkbox" checked={filters.fullTimeOnly} onChange={toggleFullTimeOnly} />

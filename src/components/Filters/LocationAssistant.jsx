@@ -54,7 +54,7 @@ const LocationAssistant = ({
   const shouldShowSuggestions = query && !!suggestions.length
 
   return locationHasFocus && (shouldShowSuggestions || !isIgnoringDeviceLocation) && (
-    <ul id="mobileLocationSuggestions">
+    <ul id="locationSuggestions">
       {!isIgnoringDeviceLocation && (
         <li>
           <a href="#" onClick={e => handleUseMyLocation(e)}>

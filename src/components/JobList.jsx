@@ -1,7 +1,6 @@
 import { useJobList } from '../hooks/useJobList.jsx'
 import { JobListItem } from './JobListItem.jsx'
-import { MdOutlineCancel, MdOutlineFilterNone } from 'react-icons/md'
-import ActiveFilterList from './Filters/ActiveFilterList.jsx'
+import NoJobsFound from './NoJobsFound.jsx'
 
 const JobList = () => {
   const {
@@ -10,23 +9,14 @@ const JobList = () => {
     hasMoreResults
   } = useJobList()
 
-  return (
+  return !!jobs.length ? (
     <>
-      {jobs.length > 0 && (
-        <>
-          <ul id="jobList">
-            {jobs.map((j, i) => <JobListItem key={i} job={j} />)}
-          </ul>
-          {hasMoreResults && <button id="loadMoreButton" className="button" onClick={nextPage}>Load More</button>}
-        </>
-      ) || (
-        <div id="noJobsFound">
-          <MdOutlineFilterNone />
-          No jobs matching your supplied filters
-        </div>
-      )}
+      <ul id="jobList">
+        {jobs.map((j, i) => <JobListItem key={i} job={j} />)}
+      </ul>
+      {hasMoreResults && <button id="loadMoreButton" className="button" onClick={nextPage}>Load More</button>}
     </>
-  )
+  ) : <NoJobsFound />
 }
 
 export default JobList

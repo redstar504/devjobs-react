@@ -62,6 +62,7 @@ export function JobListProvider({ children }) {
     getJobList()
       .then(json => {
         setJobs(json.results)
+        setNumResults(json.count)
         setHasMoreResults(!!json.next)
       })
       .catch(() => {

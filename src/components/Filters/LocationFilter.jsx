@@ -47,10 +47,9 @@ const LocationFilter = () => {
     <>
       {isUsingDeviceLocation && (
         <>
-          <label id="usingMyLocationLabel">
+          <label>
             <input
               type="checkbox"
-              id="usingMyLocation"
               checked={isUsingDeviceLocation}
               onChange={handleCancelDeviceLocation}
             />
