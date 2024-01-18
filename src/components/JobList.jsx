@@ -6,8 +6,13 @@ const JobList = () => {
   const {
     jobs,
     nextPage,
-    hasMoreResults
+    hasMoreResults,
+    isInitialized
   } = useJobList()
+
+  if (!isInitialized) {
+    return null
+  }
 
   return !!jobs.length ? (
     <>

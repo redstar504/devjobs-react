@@ -18,12 +18,15 @@ export function JobListProvider({ children }) {
   const [hasMoreResults, setHasMoreResults] = useState(false)
   const [numResults, setNumResults] = useState(0)
   const [isIgnoringDeviceLocation, setIsIgnoringDeviceLocation] = useState(false)
+  const [isInitialized, setIsInitialized] = useState(false)
 
   const filtering = useJobFilters()
   const { filters, applyFilters, resetFilters } = filtering
 
   function jobHydrator(page, filters) {
-    startLoading()
+    // wait before starting loading spinner so it doesn't flash on fast connections
+    const loadingTimeout = setTimeout(() => startLoading(), 1000)
+
     return getJobList(page, filters)
       .then(json => {
         setNumResults(json.count)
@@ -36,7 +39,9 @@ export function JobListProvider({ children }) {
         return {}
       })
       .then(json => {
+        setIsInitialized(true)
         stopLoading()
+        clearTimeout(loadingTimeout)
         return json
       })
   }
@@ -88,6 +93,7 @@ export function JobListProvider({ children }) {
         applyJobFilters,
         resetJobFilters,
         filtering,
+        isInitialized,
         settings: {
           isIgnoringDeviceLocation: isIgnoringDeviceLocation,
           setIsIgnoringDeviceLocation: () => setIsIgnoringDeviceLocation(true)
