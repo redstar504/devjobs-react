@@ -11,6 +11,7 @@ const LocationFilter = ({labelId, labelClassName}) => {
   const { isIgnoringDeviceLocation, setIsIgnoringDeviceLocation } = settings
 
   const handleUseDeviceLocation = coords => {
+    setLocationHasFocus(false)
     dispatch({
       type: 'USE_DEVICE_LOCATION',
       coords
