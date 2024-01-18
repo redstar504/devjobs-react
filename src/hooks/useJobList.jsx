@@ -20,7 +20,7 @@ export function JobListProvider({ children }) {
   const [isIgnoringDeviceLocation, setIsIgnoringDeviceLocation] = useState(false)
 
   const filtering = useJobFilters()
-  const { applyFilters, filters } = filtering
+  const { applyFilters, filters, filterKey } = filtering
 
   function jobHydrator(page, filters) {
     startLoading()
@@ -44,26 +44,16 @@ export function JobListProvider({ children }) {
   const hydrateJobs = useCallback(jobHydrator, [])
 
   useEffect(() => {
-    hydrateJobs(1).then(results => {
+    hydrateJobs(1, filters).then(results => {
       setJobs(results)
     })
-  }, [hydrateJobs])
+  }, [hydrateJobs, filterKey])
 
   const nextPage = () => {
     const nextPage = currentPage + 1
     setCurrentPage(nextPage)
     hydrateJobs(nextPage, filters).then(results => {
       setJobs([...jobs, ...results])
-    })
-  }
-
-  const applyJobFilters = () => {
-    applyFilters(filters => {
-      hydrateJobs(1, filters).then(results => {
-        setJobs([])
-        setCurrentPage(1)
-        setJobs(results)
-      })
     })
   }
 
@@ -74,7 +64,6 @@ export function JobListProvider({ children }) {
         numResults,
         hasMoreResults,
         nextPage,
-        applyJobFilters,
         filtering,
         settings: {
           isIgnoringDeviceLocation: isIgnoringDeviceLocation,

@@ -3,11 +3,12 @@ import LocationFilter from './LocationFilter.jsx'
 import PropTypes from 'prop-types'
 
 const MobileFilterDialog = ({ onClose = f => f }) => {
-  const { applyJobFilters, filtering: {
+  const { filtering: {
     filters,
     dispatch,
     hasActiveFilters,
     resetFilters,
+    applyFilters,
   }} = useJobList()
 
   const toggleFullTimeOnly = () => dispatch({
@@ -16,7 +17,7 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
 
   const handleSubmitSearch = e => {
     e.preventDefault()
-    applyJobFilters(() => onClose())
+    applyFilters(() => onClose())
   }
 
   const handleResetFilters = e => {
