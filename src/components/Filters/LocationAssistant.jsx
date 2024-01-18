@@ -53,7 +53,7 @@ const LocationAssistant = ({
 
   const shouldShowSuggestions = query && !!suggestions.length
 
-  return locationHasFocus && (shouldShowSuggestions || !isIgnoringDeviceLocation) && (
+  return (shouldShowSuggestions || !isIgnoringDeviceLocation) && (
     <ul id="locationSuggestions">
       {!isIgnoringDeviceLocation && (
         <li>
@@ -64,7 +64,7 @@ const LocationAssistant = ({
       )}
       {shouldShowSuggestions && suggestions.map((s, i) => (
         <li key={i}>
-          <a href="#" onClick={onAutocomplete(i)}>
+          <a href="#" onMouseDown={onAutocomplete(i)}>
           <FaLocationDot /> <span>{s.city}</span>
           </a>
         </li>

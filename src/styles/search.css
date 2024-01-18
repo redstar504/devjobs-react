@@ -96,7 +96,12 @@
     background: url(../assets/desktop/icon-location.svg) center left 1.5em no-repeat;
 }
 
+.filterByLocation:focus + #locationSuggestions {
+    display: block;
+}
+
 #locationSuggestions {
+    display: none;
     background: var(--light-gray);
     border-bottom: 1px solid var(--dark-gray-faded);
     position: relative;

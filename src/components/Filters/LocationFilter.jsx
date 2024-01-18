@@ -62,7 +62,7 @@ const LocationFilter = ({labelId, labelClassName}) => {
         <div id="outset">
           <label className={labelClassName} id={labelId}>
             <input
-              className="textField"
+              className="textField filterByLocation"
               placeholder="Filter by location..."
               onChange={handleQueryChange}
               value={filters.locationQuery}
