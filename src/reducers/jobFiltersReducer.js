@@ -1,4 +1,20 @@
-import { initialFilters } from '../hooks/useJobFilters.js'
+export const initialFilters = {
+  lat: undefined,
+  lng: undefined,
+  placeId: undefined,
+  fullTimeOnly: false,
+  locationQuery: '',
+  keywords: '',
+}
+
+export const isInitialFilterSet = f => {
+  return f.lat === initialFilters.lat &&
+    f.lng === initialFilters.lng &&
+    f.placeId === initialFilters.placeId &&
+    f.fullTimeOnly === initialFilters.fullTimeOnly &&
+    f.locationQuery === initialFilters.locationQuery &&
+    f.keywords === initialFilters.keywords
+}
 
 export function jobFiltersReducer(filters, action) {
   switch (action.type) {

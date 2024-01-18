@@ -1,23 +1,5 @@
 import { useReducer, useState } from 'react'
-import { jobFiltersReducer } from '../reducers/jobFiltersReducer.js'
-
-export const initialFilters = {
-  lat: undefined,
-  lng: undefined,
-  placeId: undefined,
-  fullTimeOnly: false,
-  locationQuery: '',
-  keywords: '',
-}
-
-const isInitialFilterSet = f => {
-  return f.lat === initialFilters.lat &&
-    f.lng === initialFilters.lng &&
-    f.placeId === initialFilters.placeId &&
-    f.fullTimeOnly === initialFilters.fullTimeOnly &&
-    f.locationQuery === initialFilters.locationQuery &&
-    f.keywords === initialFilters.keywords
-}
+import { jobFiltersReducer, initialFilters, isInitialFilterSet } from '../reducers/jobFiltersReducer.js'
 
 export default function useJobFilters() {
   const [filters, dispatch] = useReducer(jobFiltersReducer, initialFilters)
