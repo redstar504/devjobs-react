@@ -2,7 +2,8 @@ import { useState } from 'react'
 import LocationAssistant from './LocationAssistant.jsx'
 import { useJobList } from '../../hooks/useJobList.jsx'
 
-const LocationFilter = () => {
+const LocationFilter = ({labelId, labelClassName}) => {
+  console.log(labelId, labelClassName)
   const [isUsingAutocomplete, setIsUsingAutocomplete] = useState(false)
   const [locationHasFocus, setLocationHasFocus] = useState(false)
 
@@ -47,7 +48,7 @@ const LocationFilter = () => {
     <>
       {isUsingDeviceLocation && (
         <>
-          <label>
+          <label className={labelClassName} id={labelId}>
             <input
               type="checkbox"
               checked={isUsingDeviceLocation}
@@ -57,13 +58,15 @@ const LocationFilter = () => {
           </label>
         </>
       ) || (
-        <input
-          className="textField"
-          placeholder="Filter by location..."
-          onChange={handleQueryChange}
-          value={filters.locationQuery}
-          onFocus={() => setLocationHasFocus(true)}
-        />
+        <label className={labelClassName} id={labelId}>
+          <input
+            className="textField"
+            placeholder="Filter by location..."
+            onChange={handleQueryChange}
+            value={filters.locationQuery}
+            onFocus={() => setLocationHasFocus(true)}
+          />
+        </label>
       )}
       {assistantEnabled &&
         <LocationAssistant

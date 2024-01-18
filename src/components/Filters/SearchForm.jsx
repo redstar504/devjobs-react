@@ -29,9 +29,7 @@ const SearchForm = () => {
       <label className="fieldWrapper" id="titleQueryLabel">
         <input onChange={handleKeywordChange} value={filters.keywords} className="textField" placeholder="Filter by title.." />
       </label>
-      <label className="fieldWrapper" id="locationQueryLabel">
-        <LocationFilter />
-      </label>
+      <LocationFilter labelId="locationQueryLabel" labelClassName="fieldWrapper" />
       <div id="fullTimeQueryWrapper">
         <input id="fullTimeQuery" type="checkbox" checked={filters.fullTimeOnly} onChange={toggleFullTimeOnly} />
         <label htmlFor="fullTimeQuery">

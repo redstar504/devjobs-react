@@ -545,8 +545,11 @@ main > article > header {
 
     #searchForm #locationQueryLabel {
         flex-grow: 1;
-        display: block;
+        display: flex;
+        align-items: center;
         background: url(../assets/desktop/icon-location.svg) center left 1.125em no-repeat;
+        position: relative;
+        column-gap: 1em;
     }
 
     #fullTimeQueryWrapper {
@@ -592,6 +595,8 @@ main > article > header {
         box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
         min-width: 17.4375em;
         background: var(--white);
+        top: 5.5em;
+        left: 3em;
     }
 }
 
