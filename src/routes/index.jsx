@@ -11,15 +11,17 @@ const Index = () => {
     <>
       <section>
         <SearchForm />
-        <div id="jobListMetaWrapper">
-          <ActiveFilterList
-            filters={filters}
-            hasActiveFilters={hasActiveFilters}
-            resetFilters={resetJobFilters}
-            filterKey={filterKey}
-          />
-          <ResultsCounter />
-        </div>
+        { hasActiveFilters && (
+          <div id="jobListMetaWrapper">
+            <ActiveFilterList
+              filters={filters}
+              hasActiveFilters={hasActiveFilters}
+              resetFilters={resetJobFilters}
+              filterKey={filterKey}
+            />
+            <ResultsCounter />
+          </div>
+        )}
         <JobList />
       </section>
     </>
