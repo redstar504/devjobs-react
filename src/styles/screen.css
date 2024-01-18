@@ -523,6 +523,10 @@ main > article > header {
         margin: 0 0 2.875em;
     }
 
+    #searchForm #openMobileFiltersButton {
+        display: none;
+    }
+
     #locationQuery, #fullTimeQuery, #fullTimeQuery + label {
         display: block;
     }
@@ -604,6 +608,10 @@ main > article > header {
 
     #searchForm {
         margin: 0 0 6.5625em;
+    }
+
+    #jobListMetaWrapper {
+        margin-top: -5.5625em;
     }
 
     #jobList {
