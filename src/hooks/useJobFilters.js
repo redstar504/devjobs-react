@@ -22,9 +22,11 @@ const isInitialFilterSet = f => {
 export default function useJobFilters() {
   const [filters, dispatch] = useReducer(jobFiltersReducer, initialFilters)
   const [hasActiveFilters, setHasActiveFilters] = useState(false)
+  const [filterKey, toggleFilterKey] = useReducer(v => !v, false)
 
   const resetFilters = (onSuccess = f => f) => {
     console.log('[Job Filters] dispatching reset to reducer')
+    toggleFilterKey()
     dispatch({
       type: 'RESET_FILTERS'
     })
@@ -34,6 +36,7 @@ export default function useJobFilters() {
 
   const validateFilters = (onSuccess = f => f) => {
     console.log('[Job Filters] validating filters')
+    toggleFilterKey()
     if (isInitialFilterSet(filters)) {
       return resetFilters(onSuccess)
     }
@@ -47,5 +50,6 @@ export default function useJobFilters() {
     validateFilters,
     resetFilters,
     hasActiveFilters,
+    filterKey,
   }
 }

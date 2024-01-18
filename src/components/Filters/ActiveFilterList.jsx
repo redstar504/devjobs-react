@@ -1,9 +1,7 @@
 import { MdOutlineCancel } from 'react-icons/md'
-import { useJobList } from '../../hooks/useJobList.jsx'
+import { memo } from 'react'
 
-const ActiveFilterList = () => {
-  const { filtering } = useJobList();
-  const { filters, hasActiveFilters, resetFilters } = filtering;
+const FilterList = ({filters, hasActiveFilters, resetFilters}) => {
   const splitLocation = loc => loc.split(',')[0]
 
   return hasActiveFilters && (
@@ -17,5 +15,9 @@ const ActiveFilterList = () => {
     </ul>
   )
 }
+
+const ActiveFilterList = memo(FilterList, (prevProps, nextProps) => {
+  return prevProps.filterKey === nextProps.filterKey;
+})
 
 export default ActiveFilterList

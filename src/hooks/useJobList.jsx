@@ -20,7 +20,7 @@ export function JobListProvider({ children }) {
   const [isIgnoringDeviceLocation, setIsIgnoringDeviceLocation] = useState(false)
 
   const filtering = useJobFilters()
-  const { validateFilters, hasActiveFilters } = filtering;
+  const { validateFilters, hasActiveFilters, filterKey } = filtering;
 
   const nextPage = () => {
     const nextPage = currentPage + 1;

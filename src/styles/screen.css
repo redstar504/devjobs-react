@@ -254,7 +254,6 @@ main > article > header {
     text-align: center;
     align-items: center;
     justify-content: space-between;
-    background: var(--light-gray);
 }
 
 #activeFilterList {
@@ -291,7 +290,10 @@ main > article > header {
 
 #numResults {
     font-size: 0.75em;
-    color: var(--dark-gray);
+    color: var(--very-dark-blue);
+    background: var(--light-gray);
+    padding: 0.25em 0.5em;
+    border-radius: 0.25em;
 }
 
 #jobList {
