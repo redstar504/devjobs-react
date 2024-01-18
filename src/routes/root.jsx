@@ -8,6 +8,7 @@ import { isDarkModeOperatingSystem } from '../lib/darkMode.js'
 import { JobListProvider } from '../hooks/useJobList.jsx'
 import { PacmanLoader } from 'react-spinners'
 import ErrorPage from '../error-page.jsx'
+import { createPortal } from 'react-dom'
 
 export const AppStatusContext = createContext({})
 
@@ -45,7 +46,7 @@ export default function Root() {
             </h1>
             <DarkModeControl onToggleMode={toggleDarkMode} />
           </header>
-          {hasError && <ErrorPage onResetError={resetError} /> || (
+          {hasError && createPortal(<ErrorPage onResetError={resetError} />, document.getElementById('root')) || (
             <AppStatusContext.Provider value={{startLoading, stopLoading, throwError}}>
               <JobListProvider>
                 <Outlet />
