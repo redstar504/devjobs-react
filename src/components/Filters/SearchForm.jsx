@@ -4,7 +4,7 @@ import { useJobList } from '../../hooks/useJobList.jsx'
 import LocationFilter from './LocationFilter.jsx'
 
 const SearchForm = () => {
-  const { filtering: {applyFilters, dispatch, filters }} = useJobList()
+  const { applyJobFilters, filtering: {dispatch, filters }} = useJobList()
 
   const handleKeywordChange = e => {
     dispatch({
@@ -21,7 +21,7 @@ const SearchForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    applyFilters()
+    applyJobFilters()
   }
 
   return (

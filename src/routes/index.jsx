@@ -5,8 +5,7 @@ import { useJobList } from '../hooks/useJobList.jsx'
 import ResultsCounter from '../components/ResultsCounter.jsx'
 
 const Index = () => {
-  const { filtering } = useJobList()
-  const { filters, hasActiveFilters, resetFilters, filterKey } = filtering
+  const { resetJobFilters, filtering: { filters, hasActiveFilters, filterKey } } = useJobList()
 
   return (
     <>
@@ -16,7 +15,7 @@ const Index = () => {
           <ActiveFilterList
             filters={filters}
             hasActiveFilters={hasActiveFilters}
-            resetFilters={resetFilters}
+            resetFilters={resetJobFilters}
             filterKey={filterKey}
           />
           <ResultsCounter />

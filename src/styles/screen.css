@@ -425,14 +425,6 @@ main > article > header {
     position: relative;
 }
 
-#mobileFiltersWrapper #resetFiltersButton {
-    text-align: center;
-    display: block;
-    color: var(--very-dark-blue);
-    margin-top: -0.75em;
-    text-decoration: none;
-}
-
 #locationSuggestions a {
     text-decoration: none;
     font-weight: 700;
