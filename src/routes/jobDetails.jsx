@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { getSingleJob } from '../lib/API.js'
 import getTimeAgo from '../lib/dateUtil.js'
 import { getHostname } from '../lib/urlUtil.js'
+import { trans } from '../lib/translate.js'
 
 export const loader = ({ params }) => {
   return getSingleJob(params.jobId)
@@ -29,7 +30,7 @@ const JobDetails = () => {
       <div id="jobDetailsCard">
         <header>
             <span>{getTimeAgo(new Date(job.post_date), { display: 'long' })} ago
-              <i className="bullet"></i> {job.contract_type}
+              <i className="bullet"></i> {trans(job.contract_type)}
             </span>
           <h3>{job.title}</h3>
           <small>{job.location}</small>
