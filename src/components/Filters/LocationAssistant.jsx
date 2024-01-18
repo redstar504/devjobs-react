@@ -57,7 +57,7 @@ const LocationAssistant = ({
     <ul id="locationSuggestions">
       {!isIgnoringDeviceLocation && (
         <li>
-          <a href="#" onClick={e => handleUseMyLocation(e)}>
+          <a href="#" onMouseDown={e => handleUseMyLocation(e)}>
             <FaLocationCrosshairs /> Use current location
           </a>
         </li>

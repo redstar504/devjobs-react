@@ -3,7 +3,6 @@ import LocationAssistant from './LocationAssistant.jsx'
 import { useJobList } from '../../hooks/useJobList.jsx'
 
 const LocationFilter = ({labelId, labelClassName}) => {
-  console.log(labelId, labelClassName)
   const [isUsingAutocomplete, setIsUsingAutocomplete] = useState(false)
   const [locationHasFocus, setLocationHasFocus] = useState(false)
 
@@ -19,6 +18,7 @@ const LocationFilter = ({labelId, labelClassName}) => {
   }
 
   const handleCancelDeviceLocation = () => {
+    setLocationHasFocus(false)
     dispatch({
       type: 'CANCEL_DEVICE_LOCATION'
     })
@@ -58,26 +58,29 @@ const LocationFilter = ({labelId, labelClassName}) => {
           </label>
         </>
       ) || (
-        <label className={labelClassName} id={labelId}>
-          <input
-            className="textField"
-            placeholder="Filter by location..."
-            onChange={handleQueryChange}
-            value={filters.locationQuery}
-            onFocus={() => setLocationHasFocus(true)}
-          />
-        </label>
+        <div id="outset">
+          <label className={labelClassName} id={labelId}>
+            <input
+              className="textField"
+              placeholder="Filter by location..."
+              onChange={handleQueryChange}
+              value={filters.locationQuery}
+              onFocus={() => setLocationHasFocus(true)}
+              onBlur={() => setLocationHasFocus(false)}
+            />
+            {assistantEnabled &&
+              <LocationAssistant
+                query={filters.locationQuery}
+                onUseDeviceLocation={handleUseDeviceLocation}
+                onUseAutocomplete={handleAutocomplete}
+                locationHasFocus={locationHasFocus}
+                onIgnoreDeviceLocation={() => setIsIgnoringDeviceLocation()}
+                isIgnoringDeviceLocation={isIgnoringDeviceLocation}
+              />
+            }
+          </label>
+        </div>
       )}
-      {assistantEnabled &&
-        <LocationAssistant
-          query={filters.locationQuery}
-          onUseDeviceLocation={handleUseDeviceLocation}
-          onUseAutocomplete={handleAutocomplete}
-          locationHasFocus={locationHasFocus}
-          onIgnoreDeviceLocation={() => setIsIgnoringDeviceLocation()}
-          isIgnoringDeviceLocation={isIgnoringDeviceLocation}
-        />
-      }
     </>
   )
 }

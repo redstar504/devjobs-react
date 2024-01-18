@@ -1,5 +1,6 @@
 import { Link, Outlet } from 'react-router-dom'
 import '../styles/screen.css'
+import '../styles/search.css'
 import '../styles/dark.css'
 import { createContext, useEffect, useReducer, useState } from 'react'
 import DarkModeControl from '../components/DarkModeControl.jsx'

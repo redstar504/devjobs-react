@@ -6,7 +6,6 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
   const { applyJobFilters, filtering: {
     filters,
     dispatch,
-    hasActiveFilters,
   }} = useJobList()
 
   const toggleFullTimeOnly = () => dispatch({
@@ -23,17 +22,15 @@ const MobileFilterDialog = ({ onClose = f => f }) => {
       <div id="mobileFiltersContainer" onClick={onClose}>
         <div id="mobileFiltersWrapper" onClick={e => e.stopPropagation()}>
           <LocationFilter />
-          <label id="mobileFullTimeQueryLabel">
+          <label>
             <input
               type="checkbox"
-              id="mobileFullTimeQuery"
               checked={filters.fullTimeOnly}
               onChange={toggleFullTimeOnly}
             />
             Full Time Only
           </label>
           <button
-            id="submitMobileSearch"
             className="button"
             onClick={handleSubmitSearch}
           >

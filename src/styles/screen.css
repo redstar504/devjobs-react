@@ -186,65 +186,6 @@ main > article > header {
     margin: 0 0 2em;
 }
 
-#searchForm {
-    background: var(--white);
-    height: 5em;
-    border-radius: .375em;
-    display: flex;
-    align-items: center;
-    margin: 0 0 3.5625em;
-    padding: 0 1em;
-}
-
-#searchForm .fieldWrapper {
-    height: 100%;
-    flex-grow: 1;
-    color: var(--midnight);
-    min-width: 0; /* @see https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size  */
-}
-
-#searchForm .fieldWrapper .textField {
-    outline: none;
-    border: none;
-}
-
-#locationQueryLabel {
-    display: none;
-}
-
-#searchForm .textField {
-    height: 100%;
-    width: 100%;
-    background-color: var(--white);
-    color: var(--very-dark-blue);
-}
-
-#locationQuery, #fullTimeQuery, #fullTimeQuery + label {
-    display: none;
-}
-
-#searchForm button {
-    flex: 0 3em;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#openMobileFiltersButton {
-    background: none;
-    color: var(--very-dark-blue)
-}
-
-#openMobileFiltersButton.active {
-    color: #F4D04E;
-}
-
-#searchForm button svg {
-    width: 24px;
-    height: 24px;
-}
-
 #jobListMetaWrapper {
     display: flex;
     flex-direction: row;
@@ -371,82 +312,6 @@ main > article > header {
     margin: 0 auto;
 }
 
-#mobileFiltersContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-#mobileFiltersWrapper {
-    width: 20.4375em;
-    background-color: var(--white);
-    border-radius: 0.375em;
-    display: flex;
-    flex-direction: column;
-    row-gap: 1.5em;
-    padding: 1.5em;
-    overflow: hidden;
-    box-shadow: 0 25px 40px -20px rgba(0, 0, 0, 0.10);
-}
-
-#mobileFiltersWrapper label {
-    font-weight: 700;
-    display: flex;
-    column-gap: 0.5em;
-    align-items: center;
-}
-
-#mobileFiltersWrapper .textField {
-    height: 4.5em;
-    width: calc(100% + 3em);
-    margin: -1.5em -1.5em 0;
-    border-width: 0 0 1px 0;
-    border-style: solid;
-    border-color: var(--dark-gray-faded);
-    outline: none;
-    background: url(../assets/desktop/icon-location.svg) center left 1.5em no-repeat;
-    padding: 0 0 0 3.5625em;
-}
-
-#locationSuggestions {
-    display: block;
-    background: var(--light-gray);
-    margin: -1.5em -1.5em 0;
-    padding: 0.5em 1.5em;
-    border-bottom: 1px solid var(--dark-gray-faded);
-    z-index: 1;
-    position: relative;
-}
-
-#locationSuggestions a {
-    text-decoration: none;
-    font-weight: 700;
-    line-height: 2;
-    color: var(--midnight);
-    display: flex;
-    align-items: center;
-    column-gap: 1em;
-    white-space: nowrap;
-}
-
-#locationSuggestions svg {
-    flex-basis: 0.75em;
-    min-width: 0.75em;
-    flex-shrink: 0;
-}
-
-#locationSuggestions span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 #spinner {
     position: absolute;
     top: 50%;
@@ -517,67 +382,6 @@ main > article > header {
         margin: 0 0 2.875em;
     }
 
-    #searchForm #openMobileFiltersButton {
-        display: none;
-    }
-
-    #locationQuery, #fullTimeQuery, #fullTimeQuery + label {
-        display: block;
-    }
-
-    #searchForm {
-        margin: 0 0 4.375em;
-    }
-
-    #searchForm .fieldWrapper {
-        border-right: 1px solid var(--dark-gray-faded);
-        padding: 0 0 0 3em;
-    }
-
-    #searchForm .fieldWrapper input {
-        background: var(--white);
-    }
-
-    #searchForm #titleQueryLabel {
-        flex-grow: 3;
-        background: url(../assets/desktop/icon-search-violet.svg) center left .75rem no-repeat;
-    }
-
-    #searchForm #locationQueryLabel {
-        flex-grow: 1;
-        display: flex;
-        align-items: center;
-        background: url(../assets/desktop/icon-location.svg) center left 1.125em no-repeat;
-        position: relative;
-        column-gap: 1em;
-    }
-
-    #fullTimeQueryWrapper {
-        display: flex;
-        padding: 0 2em;
-        column-gap: 1em;
-    }
-
-    #fullTimeQueryWrapper label {
-        white-space: nowrap;
-        font-weight: 700;
-    }
-
-    #fullTimeQueryWrapper label b {
-        display: none;
-    }
-
-    #openMobileFiltersButton {
-        display: none;
-    }
-
-    #searchForm #searchButton {
-        background-image: none;
-        text-indent: 0;
-        min-width: auto;
-        padding: 0 .875em;
-    }
-
     #jobList {
         row-gap: 4.0625em;
         margin: 0 0 3.5em;
@@ -587,28 +391,9 @@ main > article > header {
     #loadMoreButton {
         margin: 0 auto 1.1875em;
     }
-
-    #locationSuggestions {
-        border: none;
-        border-radius: 0.375em;
-        position: absolute;
-        box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
-        min-width: 17.4375em;
-        background: var(--white);
-        top: 5.5em;
-        left: 3em;
-    }
 }
 
 @media (min-width: 69.375em) {
-    #fullTimeQueryWrapper label b {
-        display: inline;
-    }
-
-    #searchForm {
-        margin: 0 0 6.5625em;
-    }
-
     #jobListMetaWrapper {
         margin-top: -5.5625em;
     }

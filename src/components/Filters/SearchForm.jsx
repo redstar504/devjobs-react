@@ -30,12 +30,10 @@ const SearchForm = () => {
         <input onChange={handleKeywordChange} value={filters.keywords} className="textField" placeholder="Filter by title.." />
       </label>
       <LocationFilter labelId="locationQueryLabel" labelClassName="fieldWrapper" />
-      <div id="fullTimeQueryWrapper">
-        <input id="fullTimeQuery" type="checkbox" checked={filters.fullTimeOnly} onChange={toggleFullTimeOnly} />
-        <label htmlFor="fullTimeQuery">
-          Full Time <b>Only</b>
-        </label>
-      </div>
+      <label id="fullTimeQueryLabel">
+        <input type="checkbox" checked={filters.fullTimeOnly} onChange={toggleFullTimeOnly} />
+        <span>Full Time <b>Only</b></span>
+      </label>
       <MobileFiltersButton />
       <button type="submit" className="button" id="searchButton">
         <IoSearch />
