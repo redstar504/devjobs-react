@@ -1,0 +1,7 @@
+# Ignore version control
+.gitignore
+.git
+
+# Ignore Docker files
+Dockerfile
+docker-compose.yml
