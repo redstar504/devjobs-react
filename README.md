@@ -42,3 +42,5 @@ Some notes about the project:
 - Each project builds and deploys automatically upon pushing to the main branch on GitHub.
 
 If testing the app and any display issues or bugs are encountered, please open an issue on this GitHub repo.
+
+Completed as part of a challenge on [Frontend Mentor](https://frontendmentor.io).
