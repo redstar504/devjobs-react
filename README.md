@@ -1,7 +1,5 @@
 # React Job Board
 
-View the live demo [here](https://devjobs.icyloops.com/).
-
 View the backend source code (Django/Python) [here](https://github.com/redstar504/devjobs-api).
 
 Some notes about the project:
